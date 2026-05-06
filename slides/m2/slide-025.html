@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 025 — M2 정리</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={112} paddingTop={80} paddingBottom={80}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Eyebrow>MODULE 02 · WRAP</Eyebrow>
+            <Eyebrow color={C.fg3}>NEXT → M3 · CONTEXT ENGINEERING</Eyebrow>
+          </div>
+
+          <div style={{ marginTop: 'auto', marginBottom: 'auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 56, alignItems: 'center' }}>
+            <div>
+              <div style={{ fontFamily: FONT.display, fontWeight: 600, fontSize: 132, lineHeight: 0.95, letterSpacing: '-0.04em', color: C.ink }}>
+                좋은 입력은<br/>
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  <span style={{ position: 'absolute', inset: '-4px -10px', background: C.lime, zIndex: -1, borderRadius: 8 }} />
+                  5요소
+                </span><br/>
+                로 만든다.
+              </div>
+              <div style={{ marginTop: 36, fontFamily: FONT.sans, fontWeight: 500, fontSize: 32, lineHeight: 1.35, color: C.fg2, maxWidth: 720 }}>
+                역할 · 과업 · 맥락 · 제약 · 출력형식. 다음은 한 줄을 넘어 <b>대화 전체를 설계</b>하는 컨텍스트 엔지니어링입니다.
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>TAKEAWAY 01</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, lineHeight: 1.15 }}>
+                  형식을 강제한다
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22 }}>
+                  JSON · 표 · 마크다운으로 출력을 박제합니다.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={24}>
+                <Eyebrow color={C.ink}>TAKEAWAY 02</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, lineHeight: 1.15 }}>
+                  Few-shot 3개가 가성비
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22, color: C.ink }}>
+                  사내 양식엔 다양한 예시 3개로 패턴을 박아 넣습니다.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={24}>
+                <Eyebrow color={C.lime}>TAKEAWAY 03</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.paper, lineHeight: 1.15 }}>
+                  이긴 프롬프트는 박제
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22, color: C.fg4 }}>
+                  A/B로 검증한 5개 템플릿이 일상의 80%를 처리합니다.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+            <Eyebrow>M2 · PROMPT ENGINEERING</Eyebrow>
+            <IndexMark index={25} total={TOTAL} color={C.ink} />
+          </div>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

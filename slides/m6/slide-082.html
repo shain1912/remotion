@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 082 — HTML-First 5대 이유</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>82 · WHY HTML-FIRST · 5 REASONS</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              HTML-First를 고집하는 <Hl italic={false}>5가지 이유</Hl>.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              디자인 취향이 아니라 워크플로우 효율 때문. 5개를 합치면 작업 시간이 절반 이하로 줄어듭니다.
+            </Body>
+            <BentoCard bg={C.lime} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.ink}>BOTTOM LINE</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+                같은 소스 → PDF · 웹 · PPTX
+              </div>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr', gap: 14 }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={24}>
+              <Eyebrow color={C.fg3}>REASON 01</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                토큰 효율
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22 }}>
+                AI가 텍스트로 직접 편집. 한 글자 고치려고 풀-렌더 안 한다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle" padding={24}>
+              <Eyebrow color={C.fg3}>REASON 02</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                시각 검증
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22 }}>
+                브라우저에서 즉시 미리보기. 스크린샷·diff까지 자동화 가능.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={24}>
+              <Eyebrow color={C.ink}>REASON 03</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                반복 비용
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>
+                10번 수정해도 비용 동일. 마감 직전 무한 미세조정 가능.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle" padding={24}>
+              <Eyebrow color={C.fg3}>REASON 04</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                디자인 일관성
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22 }}>
+                토큰(CSS 변수) 한 줄 바꾸면 모든 페이지에 즉시 반영.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={24}>
+              <Eyebrow color={C.lime}>REASON 05</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                출력 자유도
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.fg4 }}>
+                PDF·웹·발표자료·인쇄용 — 한 소스가 4가지 출력으로 분기.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft} padding={24}>
+              <Eyebrow color={C.ink}>BONUS</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                Git 추적 가능
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>
+                바이너리가 아니라 텍스트. 버전 관리·협업·롤백 모두 자연.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={82} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 044 — 실습 나만의 Skill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>HANDS-ON</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              44
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              나만의<br/>Skill 박제.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                반복 작업 1개 → SKILL.md 1개 → 다음 회의 때 그대로 호출.
+              </Body>
+            </div>
+          </div>
+
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>44 · BUILD YOUR FIRST SKILL</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              주제 → 골격 → 검증 → 저장.
+            </SlideTitle>
+
+            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>STEP 01 · TOPIC</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  지난 한 달간 3회 이상 한 작업 1개를 고릅니다. 회의록 정리 · 메일 회신 톤 등.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  weekly-meeting-summary
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>STEP 02 · DRAFT</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  네 칸(트리거 · 지시 · 예시 · 검증)을 마크다운으로 채웁니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  SKILL.md
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>STEP 03 · TEST</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.fg4 }}>
+                  같은 입력을 3번 넣어 결과 톤·형식이 일정한지 확인합니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                  /skill weekly-meeting-summary
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>STEP 04 · SHARE</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.ink }}>
+                  팀 GitHub 레포 · Notion에 올려 동료가 같은 명령으로 호출하게.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.sans, fontSize: 24, fontWeight: 600 }}>
+                  팀 자산 1개 적립
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M4 · HARNESS · SKILLS · MCP</span>
+          <span style={{ color: C.ink }}>[44 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

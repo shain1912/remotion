@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 102 — 4단계 슬라이드 개요 작성</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  const OUTLINE = [
+    { n: '01', title: '문제 정의',     line: '왜 지금 이 문제를 다뤄야 하는가' },
+    { n: '02', title: '시장·현황',     line: '데이터 1개 + 그래프 1개로 압축' },
+    { n: '03', title: '솔루션 제안',   line: '우리가 제시하는 한 가지 답' },
+    { n: '04', title: '도입 효과',     line: '숫자로 보여주는 임팩트 3가지' },
+    { n: '05', title: '실행 계획',     line: '주차별 마일스톤 + 책임자' },
+    { n: '06', title: '결론·요청',     line: '청중에게 원하는 액션 한 줄' },
+  ];
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          {/* Side panel */}
+          <div style={{ background: C.ink, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.lime}>STAGE 02</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.lime }}>
+              02
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+              Outline<br/>One-Liners.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.lime}` }}>
+              <Eyebrow color={C.lime}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                슬라이드 N장 각각의 핵심 한 줄이 종이 위에 적혀 있다.
+              </Body>
+            </div>
+          </div>
+
+          {/* Right */}
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>102 · OUTLINE FIRST</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              디자인 전에 <Hl italic={false}>문장</Hl>으로 다 끝내라.
+            </SlideTitle>
+            <Body style={{ marginTop: 20, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1000 }}>
+              슬라이드 한 장당 한 줄. 이 단계에서 흐름이 매끄러우면 디자인은 빨라집니다.
+            </Body>
+
+            <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, flex: 1 }}>
+              {OUTLINE.map((it, i) => (
+                <BentoCard key={i} bg={C.paper} accent="subtle" padding={22}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
+                    <span style={{ fontFamily: FONT.display, fontSize: 44, fontWeight: 600, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1, minWidth: 72 }}>
+                      {it.n}
+                    </span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontFamily: FONT.display, fontSize: 28, fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                        {it.title}
+                      </div>
+                      <Body style={{ marginTop: 6, fontSize: 22, color: C.fg2 }}>
+                        {it.line}
+                      </Body>
+                    </div>
+                  </div>
+                </BentoCard>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M7 · PRESENTATION</span>
+          <span style={{ color: C.ink }}>[102 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

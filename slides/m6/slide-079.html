@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 079 — 5단계 다듬기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>79 · STEP 05 · POLISH</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              초안은 <Hl italic={false}>4번 통과</Hl>시키며 다듬는다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              한 번에 다 고치려 하지 말 것. 톤 → 중복제거 → 강조 → 근거 보강 — 각 통과는 단일 목적의 프롬프트로 분리합니다.
+            </Body>
+            <BentoCard bg={C.paper} accent="subtle" padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.fg3}>RULE</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24 }}>
+                한 통과 = 한 가지 일. AI에게 동시에 여러 변경을 시키지 마세요.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>PASS 01 · TONE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                톤 맞춤
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                존댓말 통일, 문장 길이 평균 25자 이하, 금지어 제거.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>PASS 02 · DEDUPE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                중복 제거
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                같은 주장이 두 번 나오는 문단을 잡아 제거. 평균 길이 30% 감소 기대.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>PASS 03 · EMPHASIS</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                강조 배치
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                숫자·고유명사·핵심 동사를 굵게. 한 단락 강조 1개 원칙.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>PASS 04 · EVIDENCE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                근거 보강
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                단언 문장에 인용 또는 수치를 붙인다. 비어 있으면 evidence_pack 재호출.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={79} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

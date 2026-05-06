@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 031 — Gemini 컨텍스트 캐싱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>31 · CONTEXT CACHING</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            반복되는 큰 입력은 <Hl italic={false}>한 번만</Hl> 보낸다.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            Gemini Context Caching — 같은 PDF 100번 호출 = 1번 비용.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* Without cache */}
+            <BentoCard bg={C.paper} fg={C.ink} accent="subtle">
+              <Eyebrow color={C.fg3}>WITHOUT CACHE</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                같은 100p<br/>×100회
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24 }}>
+                매 호출마다 같은 100쪽 PDF를 토큰화·과금. 시간·비용 모두 ×100.
+              </Body>
+              <Pill color="ghost" style={{ marginTop: 24 }}>100× COST</Pill>
+            </BentoCard>
+
+            {/* Cache · LIME hero */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>WITH CACHE</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                한 번 캐시<br/>→ 재사용
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.ink }}>
+                큰 자료를 캐시 객체로 저장하고, 매번 <b>질문만</b> 새로 보냅니다.
+              </Body>
+              <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <Pill color="ink">TTL 1H</Pill>
+                <Pill color="ink">REUSE</Pill>
+              </div>
+            </BentoCard>
+
+            {/* Result */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>SAVINGS</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 96, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.lime }}>
+                ~75%
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.fg4 }}>
+                캐시된 토큰은 4분의 1 가격대. 자료조사·문서 Q&A 워크플로우의 필수 옵션.
+              </Body>
+              <div style={{ marginTop: 20, fontFamily: FONT.mono, fontSize: 22, color: C.lime, letterSpacing: '0.16em' }}>
+                CACHED TOKENS = 1/4 PRICE
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={31} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

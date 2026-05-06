@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 008 — 컨텍스트 윈도우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>08 · CONTEXT WINDOW</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            Gemini의 <Hl italic={false}>2M 토큰</Hl>이 의미하는 것.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            "한 번의 대화에 책 20권을 통째로 넣을 수 있다."
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>BEFORE</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                ChatGPT 3.5
+              </div>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, color: C.fg3 }}>
+                4K
+              </div>
+              <Body style={{ marginTop: 20, fontSize: 22 }}>
+                A4 3쪽이 한계. 대화가 길어지면 앞 내용을 잊습니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>NOW · GEMINI 2.5 PRO</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 96, fontWeight: 600, lineHeight: 0.95, letterSpacing: '-0.05em' }}>
+                2,000,000
+              </div>
+              <Body style={{ marginTop: 20, fontSize: 22, color: C.ink }}>
+                <b>책 20권 분량</b>을 동시에 펼쳐 놓고 답을 만듭니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>SO WHAT?</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.paper }}>
+                회사 매뉴얼<br/>전부 + 회의록<br/>전부를 한 번에.
+              </div>
+              <Body style={{ marginTop: 20, fontSize: 22, color: C.fg4 }}>
+                "잘라서 넣기" 노력을 줄이고, 모델이 전체 그림을 보게 만들 수 있습니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={8} total={TOTAL} label="M1 · AI/LLM CORE" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

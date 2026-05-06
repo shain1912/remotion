@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 089 — 실습 구조 설계 + 자료 수집</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>HANDS-ON · 02</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              89
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              Outline<br/>+ Research.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                30분 안에 목차 1장 + 핵심 자료 5건 수집 완료.
+              </Body>
+            </div>
+          </div>
+
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>89 · LAB · OUTLINE + RESEARCH</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              실습 2. <Hl italic={false}>구조</Hl>를 먼저, 자료는 그 위에.
+            </SlideTitle>
+
+            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>STEP 01 · STRUCTURE</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  76번 슬라이드 5가지 표준 구조 중 1개 선택 → 챕터 명만 정함.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  outline.md
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>STEP 02 · GAP MAP</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  각 챕터별로 "지금 모르는 것" 한 줄씩 — 자료 수집 우선순위.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  unknowns.md
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>STEP 03 · M5 RECYCLE</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.fg4 }}>
+                  M5 자료조사 워크플로우 그대로 — Skill 한 번 호출.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                  /research-deep
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>STEP 04 · STITCH</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.ink }}>
+                  수집한 자료를 outline 옆에 인용 메모로 붙여 둡니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.sans, fontSize: 24, fontWeight: 600 }}>
+                  "ch.2 자료 5건 정리해줘"
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M6 · PROPOSAL</span>
+          <span style={{ color: C.ink }}>[89 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

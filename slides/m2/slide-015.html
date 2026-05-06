@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 015 — Few-shot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>15 · FEW-SHOT</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              <Hl italic={false}>예시 1~3개</Hl>로 패턴을 가르칩니다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              사내 양식 · 우리 회사 톤 · 까다로운 추출처럼 <b>모델이 처음 보는 형식</b>이면 예시 몇 개로 형 자체를 박아 넣습니다.
+            </Body>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.lime}>SHAPE · IN/OUT</Eyebrow>
+              <div style={{ marginTop: 12, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}`, lineHeight: 1.5 }}>
+                Input  → Output<br/>
+                Input  → Output<br/>
+                Input  → ?
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                마지막 줄만 비우면 모델이 같은 형으로 채웁니다.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>SHOTS · 1</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.035em' }}>
+                톤 일치
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                회사 메일 한 통이면 답장 톤이 잡힙니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>SHOTS · 3 · SWEET SPOT</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.035em' }}>
+                패턴 안정
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                대부분의 분류·추출 과업의 <b>가성비 정점</b>.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>SHOTS · 10+</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.035em', color: C.paper }}>
+                과적합 위험
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                토큰만 쓰고 일반화는 떨어질 수 있습니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>RULE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.035em' }}>
+                다양성 &gt; 개수
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                비슷한 예시 5개보다 <b>다른 케이스 3개</b>가 강합니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={15} total={TOTAL} label="M2 · PROMPT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

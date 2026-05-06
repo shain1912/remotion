@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 029 — Lost in the Middle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + guidance */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>29 · POSITION EFFECT</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              긴 컨텍스트의 <Hl italic={false}>중간</Hl>은 잘 안 읽힌다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              모델은 컨텍스트의 <b>앞머리와 끝</b>을 가장 잘 기억합니다. 100쪽 보고서를 통째로 넣으면 가운데가 사라집니다.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>RULE OF THUMB</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  핵심 지시는 <b>맨 앞</b>, 가장 중요한 자료는 <b>맨 끝</b>에.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 bento — 위치별 회수율 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>FRONT · 첫 10%</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 80, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                ~95%
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                회수율 최고. 시스템 지시·역할 정의를 둘 자리.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>MIDDLE · 가운데</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 80, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                ~50%
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                회수율 급락. 묻는 사실을 여기 묻지 마세요.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>REAR · 마지막 10%</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 80, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                ~85%
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                두 번째로 강함. 핵심 자료·질문을 여기에.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>FIX · 처방</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.025em', color: C.paper }}>
+                요약 · 인용 · 분할
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                긴 자료는 압축, 핵심은 인용 블록, 그래도 길면 챕터별로 쪼갭니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={29} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

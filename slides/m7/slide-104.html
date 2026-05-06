@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 104 — 6단계 HTML 슬라이드 설계</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          {/* Side panel — STAGE 03 (HTML-First) */}
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>STAGE 03</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              06
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              HTML<br/>First.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                토큰·컴포넌트로 슬라이드 1장이 화면에 떠 있다.
+              </Body>
+            </div>
+          </div>
+
+          {/* Right body */}
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>104 · WHY HTML FIRST</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              왜 PPTX를 <Hl italic={false}>직접</Hl> 만들지 않는가.
+            </SlideTitle>
+            <Body style={{ marginTop: 20, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1000 }}>
+              AI는 PPTX XML보다 HTML/CSS를 100배 잘 다룹니다. HTML로 디자인하고 마지막에만 PPTX로 굽는 게 정공법.
+            </Body>
+
+            <div style={{ marginTop: 36, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>REASON 01</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  토큰 효율
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22 }}>
+                  AI가 HTML/CSS를 다루는 토큰 비용이 PPTX XML 대비 1/10 수준.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>REASON 02</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  즉시 시각 검증
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22 }}>
+                  브라우저 새로고침 한 번으로 결과 확인. PPTX는 매번 열어야 함.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>REASON 03</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  반복 비용 0
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                  CSS 변수 한 줄 바꾸면 120장이 한 번에 바뀐다. PPTX는 수동.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>REASON 04</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  디자인 일관성
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22 }}>
+                  토큰·컴포넌트 재사용으로 N장이 한 사람이 만든 듯이 통일.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>REASON 05</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                  출력 자유도
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                  같은 HTML에서 PPTX·PDF·웹사이트·영상 모두 파생 가능.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.lavSoft} padding={28}>
+                <Eyebrow color={C.ink}>NOTE</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  PPTX는 결과
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                  PPTX는 발표장 호환을 위한 <b>최종 변환물</b>일 뿐 작업의 본체가 아니다.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M7 · PRESENTATION</span>
+          <span style={{ color: C.ink }}>[104 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

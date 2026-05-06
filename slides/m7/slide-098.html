@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 098 — 발표자료 8단계 워크플로우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  const ROW_A = [
+    { kicker: '01 · DEFINE',   title: '청중 정의',      body: '누구·왜·몇 분.',          bg: C.paper, fg: C.ink, accent: 'subtle', kColor: C.fg3 },
+    { kicker: '02 · MESSAGE',  title: '핵심 메시지',    body: '한 문장으로 압축.',         bg: C.lime,  fg: C.ink, accent: null,    kColor: C.ink },
+    { kicker: '03 · STORY',    title: '스토리라인',      body: 'PREP·SCQA로 골격.',     bg: C.paper, fg: C.ink, accent: 'subtle', kColor: C.fg3 },
+    { kicker: '04 · OUTLINE',  title: '슬라이드 개요',   body: '한 줄씩 N장.',            bg: C.ink,   fg: C.paper, accent: null,  kColor: C.lime },
+  ];
+
+  const ROW_B = [
+    { kicker: '05 · CONTENT',  title: '콘텐츠 채우기',   body: '15초 · 1메시지 룰.',       bg: C.paper, fg: C.ink, accent: 'subtle', kColor: C.fg3 },
+    { kicker: '06 · HTML',     title: 'HTML 설계',     body: '디자인 토큰으로 제작.',      bg: C.lime,  fg: C.ink, accent: null,    kColor: C.ink },
+    { kicker: '07 · VISUAL',   title: '시각화 추가',     body: '차트·다이어그램·이미지.',    bg: C.paper, fg: C.ink, accent: 'subtle', kColor: C.fg3 },
+    { kicker: '08 · EXPORT',   title: 'PPTX 변환',      body: '캡처·삽입·발표 준비.',     bg: C.ink,   fg: C.paper, accent: null,  kColor: C.lime },
+  ];
+
+  function Card({ it, isLast }) {
+    return (
+      <div style={{ position: 'relative' }}>
+        <BentoCard bg={it.bg} fg={it.fg} accent={it.accent} padding={22} radius={20} style={{ height: '100%' }}>
+          <Eyebrow color={it.kColor} style={{ fontSize: 20 }}>{it.kicker}</Eyebrow>
+          <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 30, fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.025em' }}>
+            {it.title}
+          </div>
+          <Body style={{ marginTop: 10, fontSize: 22, color: it.fg === C.paper ? C.fg4 : C.fg2 }}>
+            {it.body}
+          </Body>
+        </BentoCard>
+        {!isLast && (
+          <div style={{
+            position: 'absolute', right: -22, top: '50%', transform: 'translateY(-50%)',
+            fontFamily: FONT.mono, fontSize: 26, color: C.ink, zIndex: 3
+          }}>→</div>
+        )}
+      </div>
+    );
+  }
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>98 · DECK WORKFLOW</Eyebrow>
+          <SlideTitle style={{ marginTop: 24 }}>
+            발표자료 한 건은 <Hl italic={false}>8단계</Hl>면 끝난다.
+          </SlideTitle>
+          <Body style={{ marginTop: 20, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1200 }}>
+            정의 → 메시지 → 구조 → 개요 → 콘텐츠 → HTML 설계 → 시각화 → PPTX 변환. 한 단계도 건너뛰지 마세요.
+          </Body>
+
+          <div style={{ marginTop: 44, display: 'flex', flexDirection: 'column', gap: 24, flex: 1 }}>
+            {/* Row A: Steps 01-04 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 28, flex: 1 }}>
+              {ROW_A.map((it, i) => (
+                <Card key={i} it={it} isLast={i === ROW_A.length - 1} />
+              ))}
+            </div>
+            {/* Row B: Steps 05-08 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 28, flex: 1, position: 'relative' }}>
+              {ROW_B.map((it, i) => (
+                <Card key={i} it={it} isLast={i === ROW_B.length - 1} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <SlideFooter index={98} total={TOTAL} label="M7 · PRESENTATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

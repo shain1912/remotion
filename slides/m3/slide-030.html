@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 030 — 토큰 비용 vs 품질</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>30 · COST × QUALITY</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              길게 넣을수록 <Hl italic={false}>똑똑해지지 않는다</Hl>.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              컨텍스트는 <b>꼭 필요한 것만</b> 넣을 때 정확도와 비용 둘 다 좋아집니다. 무조건 풀로 채우면 둘 다 잃습니다.
+            </Body>
+            <BentoCard bg={C.paper} accent="subtle" padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.fg3}>RULE OF THUMB</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24 }}>
+                <b>요약 → 인용 → 풀텍스트</b> 순서로 시도. 한 단계 위로 갈 때마다 비용 ×10.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>SHORT · 1K 토큰</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                정확도 ↑
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                요약·핵심만. 응답 빠르고 모델이 헤매지 않습니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>SWEET SPOT · 8~32K</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                품질 최적
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                핵심 자료 + 인용 발췌. 자동화 워크플로우의 황금 구간.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>LONG · 100K~</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                정확도 ↓
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                Lost in the Middle 발생. 비용도 응답 시간도 급증.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>COST</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.paper }}>
+                선형 ↑
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                토큰 수에 비례해 과금. 자동화 N회 호출이면 N배.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={30} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

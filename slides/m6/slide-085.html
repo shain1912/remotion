@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 085 — HTML → PDF 변환</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>85 · HTML → PDF</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            7단계. <Hl italic={false}>Puppeteer</Hl>로 한 번에 PDF.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            인쇄 CSS + headless 브라우저 = 완성된 제안서 한 권.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={36}>
+              <Eyebrow color={C.fg3}>STEP 01 · PRINT CSS</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                @page 규칙
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.fg2 }}>
+                A4 / margin / 헤더·푸터를 인쇄 전용 미디어쿼리로 정의.
+              </Body>
+              <div style={{ marginTop: 16, padding: '12px 16px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                @media print &#123; ... &#125;
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={36}>
+              <Eyebrow color={C.ink}>STEP 02 · PUPPETEER</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                page.pdf()
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.ink }}>
+                헤드리스 크롬이 HTML을 렌더 그대로 PDF로 출력. 한 줄 명령.
+              </Body>
+              <div style={{ marginTop: 16, padding: '12px 16px', background: C.paper, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.ink }}>
+                format: 'A4'
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={36}>
+              <Eyebrow color={C.lime}>STEP 03 · PAGE BREAK</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                break-inside
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.fg4 }}>
+                표·이미지·카드가 페이지 중간에 잘리지 않도록 명시.
+              </Body>
+              <div style={{ marginTop: 16, padding: '12px 16px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                avoid;
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={85} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

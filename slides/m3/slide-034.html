@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 034 — 실습 · 100p PDF 분석</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        {/* Side panel (Pattern B) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>HANDS-ON</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              34
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              100p PDF<br/>다루기.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                15분 안에 PDF의 핵심 5줄 요약과 출처 페이지를 받아낸다.
+              </Body>
+            </div>
+          </div>
+
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>34 · LARGE PDF · STRATEGY</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              통째로 던지지 말고 <Hl italic={false}>4단계</Hl>로.
+            </SlideTitle>
+
+            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>STEP 01 · UPLOAD</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  Gemini에 PDF를 통째로 업로드. 2M 컨텍스트면 100p 정도는 한 번에 들어갑니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  upload report.pdf
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>STEP 02 · OUTLINE</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  먼저 목차·섹션 제목만 뽑게 합니다. 어디에 뭐가 있는지 지도부터.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.sans, fontWeight: 600, fontSize: 22 }}>
+                  "목차와 섹션 요약"
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>STEP 03 · TARGETED Q</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.fg4 }}>
+                  목차를 보고 <b>섹션 단위로</b> 질문. "3장 결론에서 KPI 3개 뽑아줘".
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                  ASK PER SECTION
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>STEP 04 · CITE</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.ink }}>
+                  답변 끝에 <b>페이지 번호</b>를 같이 요청. 다시 사람이 검증할 수 있게.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.sans, fontSize: 24, fontWeight: 600 }}>
+                  "각 답변에 page n 표시"
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M3 · CONTEXT ENGINEERING</span>
+          <span style={{ color: C.ink }}>[34 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

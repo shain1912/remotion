@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 037 — Agent의 정의</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + definition */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>37 · WHAT IS AN AGENT</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              Agent는 <Hl italic={false}>스스로 도는 루프</Hl>입니다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              한 번 답하고 끝나는 챗봇과 다릅니다. <b>관찰 → 계획 → 실행 → 평가</b>를 반복하며 목표에 다가갑니다.
+            </Body>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.lime}>FORMULA</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.15, color: C.paper }}>
+                LLM + 도구 + 루프 = Agent
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                같은 모델도 루프와 도구를 붙이면 직원처럼 일합니다.
+              </Body>
+            </BentoCard>
+          </div>
+
+          {/* Right: 2x2 bento — 4단계 루프 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>STEP 01 · OBSERVE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                관찰
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                현재 상태와 목표를 읽습니다. 입력 · 파일 · 이전 결과를 모두 봅니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>STEP 02 · PLAN</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                계획
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                목표를 작은 단계로 쪼개고 어떤 도구를 쓸지 결정합니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>STEP 03 · ACT</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                실행
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                도구 호출, 파일 작성, API 요청 등 실제 행동을 합니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>STEP 04 · REFLECT</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                평가
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                결과가 목표에 부합하는지 검토하고 다음 루프를 돌립니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={37} total={TOTAL} label="M4 · HARNESS · SKILLS · MCP" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 074 — 1단계 RFP 분석</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>STAGE</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              01
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              RFP<br/>해체.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                요구사항·평가기준·암묵적 기대를 한 표로 압축한다.
+              </Body>
+            </div>
+          </div>
+
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>74 · STEP 01 · RFP DECONSTRUCTION</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              RFP는 <Hl italic={false}>3개 층</Hl>으로 쪼갠다.
+            </SlideTitle>
+
+            <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>LAYER 01</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  명시적 요구
+                </div>
+                <Body style={{ marginTop: 16, fontSize: 24 }}>
+                  과업 범위·납기·산출물·계약 조건. 그대로 옮겨 적기.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>LAYER 02</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  평가 기준
+                </div>
+                <Body style={{ marginTop: 16, fontSize: 24 }}>
+                  배점표·심사위원·가중치. 점수가 매겨지는 항목이 곧 목차.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.lavSoft} padding={28}>
+                <Eyebrow color={C.ink}>LAYER 03</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  암묵적 기대
+                </div>
+                <Body style={{ marginTop: 16, fontSize: 24 }}>
+                  발주처가 못 적은 진짜 고민. 행간을 읽는 1차 프롬프트로 추출.
+                </Body>
+              </BentoCard>
+            </div>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 24 }}>
+              <Eyebrow color={C.lime}>PROMPT TEMPLATE</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.sans, fontSize: 24, color: C.lime, lineHeight: 1.6 }}>
+                "이 RFP에서 (1) 명시적 요구 / (2) 평가 항목과 가중치 / (3) 발주처가 진짜 원하는 것 3개를 표로 정리해."
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M6 · PROPOSAL</span>
+          <span style={{ color: C.ink }}>[74 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

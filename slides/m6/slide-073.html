@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 073 — 8단계 워크플로우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  const STEPS = [
+    { n: '01', en: 'RFP',       ko: 'RFP 분석',     bg: 'paper' },
+    { n: '02', en: 'RESEARCH',  ko: '자료 수집',    bg: 'paper' },
+    { n: '03', en: 'STRUCTURE', ko: '구조 설계',    bg: 'lime'  },
+    { n: '04', en: 'DRAFT',     ko: '섹션 초안',    bg: 'paper' },
+    { n: '05', en: 'POLISH',    ko: '다듬기',       bg: 'paper' },
+    { n: '06', en: 'HTML',      ko: 'HTML 디자인',  bg: 'ink'   },
+    { n: '07', en: 'PDF',       ko: 'PDF 변환',     bg: 'paper' },
+    { n: '08', en: 'SUBMIT',    ko: '제출',         bg: 'lavSoft' },
+  ];
+
+  function Card({ s, isLast }) {
+    const bg = C[s.bg];
+    const isDark = s.bg === 'ink';
+    const fg = isDark ? C.paper : C.ink;
+    return (
+      <div style={{ position: 'relative' }}>
+        <BentoCard bg={bg} fg={fg} accent={s.bg === 'paper' ? 'subtle' : undefined} padding={28} style={{ minHeight: 220 }}>
+          <Eyebrow color={isDark ? C.lime : C.fg3}>STEP&nbsp;{s.n}</Eyebrow>
+          <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: fg }}>
+            {s.en}
+          </div>
+          <div style={{ marginTop: 10, fontFamily: FONT.sans, fontSize: 24, fontWeight: 600, color: fg }}>
+            {s.ko}
+          </div>
+        </BentoCard>
+        {!isLast && (
+          <div style={{
+            position: 'absolute', right: -22, top: '50%', transform: 'translateY(-50%)',
+            fontFamily: FONT.mono, fontSize: 28, color: C.ink, fontWeight: 600,
+          }}>→</div>
+        )}
+      </div>
+    );
+  }
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>73 · END-TO-END WORKFLOW</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            제안서 1건은 <Hl italic={false}>8단계</Hl>로 끝난다.
+          </SlideTitle>
+          <Body style={{ marginTop: 24, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 980 }}>
+            RFP를 받은 순간부터 PDF 제출까지 — 한 사이클 안에서 일관된 톤·근거·디자인을 유지합니다.
+          </Body>
+
+          <div style={{ marginTop: 56, display: 'grid', gridTemplateRows: '1fr 1fr', rowGap: 32, flex: 1 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', columnGap: 32 }}>
+              {STEPS.slice(0, 4).map((s, i) => (
+                <Card key={s.n} s={s} isLast={i === 3} />
+              ))}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', columnGap: 32 }}>
+              {STEPS.slice(4, 8).map((s, i) => (
+                <Card key={s.n} s={s} isLast={i === 3} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <SlideFooter index={73} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 036 — 프롬프트에서 하네스까지</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>36 · EVOLUTION OF THINKING</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            프롬프트 → 컨텍스트 → <Hl italic={false}>하네스</Hl>.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            한 줄 질문에서 작업 환경 설계로, 사고가 진화합니다.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* Stage 1: Prompt */}
+            <BentoCard bg={C.paper} fg={C.ink} accent="subtle">
+              <Eyebrow color={C.fg3}>STAGE 01</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                Prompt
+              </div>
+              <div style={{ marginTop: 16, fontFamily: FONT.sans, fontSize: 28, fontWeight: 600, color: C.ink }}>
+                한 줄 질문
+              </div>
+              <Body style={{ marginTop: 28, fontSize: 24 }}>
+                "이메일 요약해줘" 같은 단일 지시. 결과는 그때그때 운에 맡깁니다.
+              </Body>
+              <Pill color="ghost" style={{ marginTop: 28 }}>2022 · CHATGPT</Pill>
+            </BentoCard>
+
+            {/* Stage 2: Context · LIME hero */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>STAGE 02</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                Context
+              </div>
+              <div style={{ marginTop: 16, fontFamily: FONT.sans, fontSize: 28, fontWeight: 600, color: C.ink }}>
+                정보의 무대
+              </div>
+              <Body style={{ marginTop: 28, fontSize: 24, color: C.ink }}>
+                역할 · 배경 · 자료 · 형식을 함께 설계합니다. 결과의 안정성이 올라갑니다.
+              </Body>
+              <Pill color="ink" style={{ marginTop: 28 }}>2024 · LONG CTX</Pill>
+            </BentoCard>
+
+            {/* Stage 3: Harness */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>STAGE 03</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em', color: C.paper }}>
+                Harness
+              </div>
+              <div style={{ marginTop: 16, fontFamily: FONT.sans, fontSize: 28, fontWeight: 600, color: C.lime }}>
+                작업 환경 전체
+              </div>
+              <Body style={{ marginTop: 28, fontSize: 24, color: C.fg4 }}>
+                Tools · Skills · MCP · 메모리 · 권한까지 묶은 체계. AI를 직원처럼 운영합니다.
+              </Body>
+              <Pill color="lime" style={{ marginTop: 28 }}>2026 · AGENT ERA</Pill>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={36} total={TOTAL} label="M4 · HARNESS · SKILLS · MCP" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

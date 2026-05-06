@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 057 — Antigravity의 강점</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + framing */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>57 · WHY ANTIGRAVITY</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              왜 자료조사에<br/><Hl italic={false}>Antigravity</Hl>가 강한가.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              일반 챗봇과 결정적으로 다른 4가지. 모두 8단계 파이프라인을 한 도구 안에서 굴리게 해주는 능력.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>RULE OF THUMB</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  단발 질의는 ChatGPT, <b>리서치 세션</b>은 Antigravity.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 bento */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>STRENGTH 01 · WEB</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                실시간 웹 검색
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                학습 컷오프 너머 최신 자료. 출처 링크 자동 첨부.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>STRENGTH 02 · MULTI-TAB</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.ink }}>
+                멀티탭 병렬
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                여러 자료를 동시에 열어두고 비교·인용. 흐름이 끊기지 않음.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>STRENGTH 03 · CONTEXT</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                긴 컨텍스트 보유
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                대화 전체를 기억. 30분 전 결론을 다시 끌어와 비교 가능.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>STRENGTH 04 · CITE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                인용 강제
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                답변 옆에 출처 표기. "근거 없는 답"을 줄여 환각 방어에 직결.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={57} total={TOTAL} label="M5 · RESEARCH AUTOMATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

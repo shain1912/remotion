@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 024 — 프롬프트 라이브러리</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>24 · MY LIBRARY</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              자주 쓰는 프롬프트는 <Hl italic={false}>박제</Hl>합니다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              매번 새로 쓰지 마세요. <b>5개 골격 템플릿</b>이면 일상 업무의 80%가 커버됩니다.
+            </Body>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.lime}>STORE</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24, color: C.fg4 }}>
+                Notion DB · md 파일 · GitHub Gist 어디든 OK. <b>버전과 결과 메모</b>를 함께 남기세요.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr', gap: 14 }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={26}>
+              <Eyebrow color={C.fg3}>TPL 01</Eyebrow>
+              <div style={{ marginTop: 10, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                요약기
+              </div>
+              <Body style={{ marginTop: 8, fontSize: 22, color: C.fg2 }}>
+                긴 문서 → 200자 + 키워드 5개.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={26}>
+              <Eyebrow color={C.ink}>TPL 02 · 핵심</Eyebrow>
+              <div style={{ marginTop: 10, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                추출기
+              </div>
+              <Body style={{ marginTop: 8, fontSize: 22, color: C.ink }}>
+                자유 텍스트 → JSON 스키마 강제.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle" padding={26}>
+              <Eyebrow color={C.fg3}>TPL 03</Eyebrow>
+              <div style={{ marginTop: 10, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                답장 봇
+              </div>
+              <Body style={{ marginTop: 8, fontSize: 22, color: C.fg2 }}>
+                메일·메시지 톤 일치 회신.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft} padding={26}>
+              <Eyebrow color={C.ink}>TPL 04</Eyebrow>
+              <div style={{ marginTop: 10, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                초안기
+              </div>
+              <Body style={{ marginTop: 8, fontSize: 22, color: C.ink }}>
+                목차 → 본문 3턴 구조.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={26} style={{ gridColumn: '1 / 3' }}>
+              <Eyebrow color={C.lime}>TPL 05</Eyebrow>
+              <div style={{ marginTop: 10, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                리뷰어 — 결함 · 개선 · 테스트 3섹션 표
+              </div>
+              <Body style={{ marginTop: 8, fontSize: 22, color: C.fg4 }}>
+                코드 · 카피 · 제안서 · 슬라이드 모두 같은 골격으로 재사용.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={24} total={TOTAL} label="M2 · PROMPT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

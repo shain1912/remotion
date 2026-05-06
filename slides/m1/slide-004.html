@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 004 — Gemini 2.5 Pro vs Flash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + guidance */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>04 · MODEL CHOICE</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              언제 <Hl italic={false}>Pro</Hl>,<br/>언제 <Hl italic={false}>Flash</Hl>?
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 520 }}>
+              한 모델로 모든 걸 하지 마세요. <b>난이도 × 분량 × 응답 속도</b>로 골라 씁니다.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>RULE OF THUMB</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  ① 먼저 Flash로 가설 검증 → ② 안 되면 Pro로 승격
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 bento */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>PRO · USE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                복잡한 추론 · 긴 문서
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                전략 보고서, 100p+ PDF 분석, 코드베이스 리뷰, 다단 의사결정.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>PRO · STRENGTH</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                2M ctx
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                추론 깊이 ↑↑ · 비용 ↑ · 응답 시간 ↑
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>FLASH · USE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                자동화 · 분류 · 추출
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                대량 처리, 메일 분류, 폼 추출, 채팅 응답, 짧은 변환.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>FLASH · STRENGTH</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                ⚡ 5–10×
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                속도 ↑↑ · 비용 ↓↓ · 일상 워크플로우의 기본값
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={4} total={TOTAL} label="M1 · AI/LLM CORE" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

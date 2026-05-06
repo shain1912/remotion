@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 061 — 시간/비용 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>16 · TIME × COST</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              하루 <Hl italic={false}>3시간</Hl>이 30분으로.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              자료조사 한 건의 평균 비용을 측정해보면, 사람 시간보다 모델 비용이 훨씬 쌉니다.
+            </Body>
+            <BentoCard bg={C.paper} accent="subtle" padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.fg3}>RULE OF THUMB</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24 }}>
+                <b>30분 작업이 1시간 안에 끝난다</b> — 사람은 검토자, 모델은 1차 작성자로.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>BEFORE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                3 hrs
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                탭 30개 · 복붙 · 정리 · 표 만들기까지 사람이 다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>AFTER</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                30 min
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                Antigravity가 1차 → 사람이 검수·편집만.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>MODEL COST</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.paper }}>
+                ≈ ₩1,200
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                Pro 호출 6~8회 + Flash 보조. 한 잔 커피보다 쌉니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>HUMAN COST</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                6× 절감
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                3 hrs → 30 min. 남은 시간에 다른 한 건을 더.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={61} total={TOTAL} label="M5 · RESEARCH AUTOMATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

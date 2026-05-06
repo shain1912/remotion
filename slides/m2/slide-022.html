@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 022 — 실습 보고서 초안</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>HANDS-ON</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              22
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              Report<br/>Draft.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                숫자 데이터 → 구조 → 1쪽 초안까지 30분 안에 도착한다.
+              </Body>
+            </div>
+          </div>
+
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>22 · PRACTICE · REPORT DRAFT</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              데이터 → 구조 → 초안의 3턴.
+            </SlideTitle>
+
+            <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>TURN 01 · 데이터 정리</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  CSV·표를 붙여넣고 "이 데이터에서 가장 의미 있는 3가지"를 시킵니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  TASK: top 3 insights
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>TURN 02 · 구조 설계</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24 }}>
+                  "임원 보고용 1쪽 보고서 목차를 H2까지 만들어줘."
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                  TASK: outline H1/H2
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>TURN 03 · 초안 작성</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.fg4 }}>
+                  목차 확정 → 각 H2별 3문장 본문 + 인사이트 카드.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                  PER H2: 3 sentences
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>RULE</Eyebrow>
+                <Body style={{ marginTop: 14, fontSize: 24, color: C.ink }}>
+                  한 턴에 한 일만. 데이터·구조·문장을 섞으면 모두 평범해집니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.sans, fontSize: 24, fontWeight: 600 }}>
+                  ONE TURN · ONE JOB
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M2 · PROMPT ENGINEERING</span>
+          <span style={{ color: C.ink }}>[22 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

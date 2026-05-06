@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 048 — 자동화 워크플로우 한눈에</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function StageCard({ n, title, sub, bg, fg, accentEyebrow, isLast }) {
+    return (
+      <div style={{ position: 'relative' }}>
+        <BentoCard bg={bg} fg={fg} padding={22} radius={22} accent={bg === C.paper ? 'subtle' : undefined} style={{ height: '100%' }}>
+          <div style={{ fontFamily: FONT.mono, fontSize: 22, letterSpacing: '0.16em', color: accentEyebrow }}>
+            STAGE&nbsp;{String(n).padStart(2, '0')}
+          </div>
+          <div style={{ marginTop: 14, fontFamily: FONT.display, fontWeight: 600, fontSize: 32, lineHeight: 1.1, letterSpacing: '-0.025em', color: fg }}>
+            {title}
+          </div>
+          <div style={{ marginTop: 10, fontFamily: FONT.sans, fontSize: 22, lineHeight: 1.45, color: fg === C.paper ? C.fg4 : C.fg2 }}>
+            {sub}
+          </div>
+        </BentoCard>
+        {!isLast && (
+          <div style={{
+            position: 'absolute', right: -22, top: '50%', transform: 'translateY(-50%)',
+            fontFamily: FONT.mono, fontSize: 28, color: C.ink, fontWeight: 600, zIndex: 5,
+          }}>→</div>
+        )}
+      </div>
+    );
+  }
+
+  function Slide() {
+    const row1 = [
+      { n: 1, title: '주제 정의', sub: '모호한 질문을 검색 가능하게 분해' },
+      { n: 2, title: '쿼리 생성', sub: '핵심어·동의어·반대어·시간범위' },
+      { n: 3, title: '다중 검색', sub: '학술·뉴스·공식·커뮤니티 분리' },
+      { n: 4, title: '신뢰도 평가', sub: '출처·날짜·이해관계·교차검증' },
+    ];
+    const row2 = [
+      { n: 5, title: '구조화 요약', sub: '정의·근거·반론·시사점 4분면' },
+      { n: 6, title: '비교·종합', sub: '출처별 주장 매트릭스 작성' },
+      { n: 7, title: '출처 관리', sub: 'URL·날짜·인용·재방문성' },
+      { n: 8, title: '리서치 노트', sub: 'Markdown 표준 템플릿 산출' },
+    ];
+
+    const cellStyle = (n) => {
+      // lime hero on stage 5 (synthesis pivot), ink on stage 8 (output)
+      if (n === 5) return { bg: C.lime,  fg: C.ink,   eb: C.ink };
+      if (n === 8) return { bg: C.ink,   fg: C.paper, eb: C.lime };
+      return                { bg: C.paper, fg: C.ink, eb: C.fg3 };
+    };
+
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>48 · WORKFLOW OVERVIEW</Eyebrow>
+          <SlideTitle style={{ marginTop: 24 }}>
+            8단계 파이프라인으로 굴립니다.
+          </SlideTitle>
+          <Body style={{ marginTop: 18, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1100 }}>
+            한 단계씩 출력이 명확하면, 도중에 멈췄다가 다시 시작해도 같은 결과가 나옵니다. 다음 12장은 각 단계 디테일.
+          </Body>
+
+          <div style={{ marginTop: 56, display: 'flex', flexDirection: 'column', gap: 56, flex: 1 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, position: 'relative' }}>
+              {row1.map((s, i) => {
+                const st = cellStyle(s.n);
+                return (
+                  <StageCard key={s.n} n={s.n} title={s.title} sub={s.sub}
+                    bg={st.bg} fg={st.fg} accentEyebrow={st.eb} isLast={i === 3} />
+                );
+              })}
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, position: 'relative' }}>
+              {row2.map((s, i) => {
+                const st = cellStyle(s.n);
+                return (
+                  <StageCard key={s.n} n={s.n} title={s.title} sub={s.sub}
+                    bg={st.bg} fg={st.fg} accentEyebrow={st.eb} isLast={i === 3} />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <SlideFooter index={48} total={TOTAL} label="M5 · RESEARCH AUTOMATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

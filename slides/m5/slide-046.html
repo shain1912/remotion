@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 046 — 자료조사가 왜 어려운가</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + framing */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>46 · WHY RESEARCH IS HARD</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              자료조사는 왜 늘 <Hl italic={false}>오래 걸리고</Hl><br/>늘 <Hl italic={false}>찜찜한가</Hl>?
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              혼자서 잘하기 어려운 4가지 구조적 문제. 어느 한 곳에서만 막혀도 결과의 신뢰가 무너집니다.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>BOTTOM LINE</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  문제는 능력이 아니라 <b>프로세스</b>. 그래서 자동화로 풀 수 있습니다.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 bento */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>PROBLEM 01 · TIME</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                3–8h
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 24, color: C.fg2 }}>
+                한 주제 정리하는 데만 반나절. 검색·정독·메모를 사람이 다 한다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>PROBLEM 02 · TRUST</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                출처 ?
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 24, color: C.ink }}>
+                블로그·뉴스·논문이 뒤섞여 어디까지 믿어야 할지 기준이 흐릿하다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>PROBLEM 03 · SYNTHESIS</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.paper }}>
+                10 → 1
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 24, color: C.fg4 }}>
+                10편을 모았는데 한 장으로 종합이 안 된다. 그냥 링크 모음으로 끝난다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>PROBLEM 04 · REPLAY</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                다시 ×
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 24, color: C.ink }}>
+                다음번에 같은 품질로 다시 못 한다. 매번 처음부터 시작한다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={46} total={TOTAL} label="M5 · RESEARCH AUTOMATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

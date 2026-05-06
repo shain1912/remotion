@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 033 — 메모리 시스템</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>33 · MEMORY</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            기억은 <Hl italic={false}>두 층</Hl>으로 쌓는다.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            대화는 단기, 사용자 정보는 장기 — 어디에 무엇을 둘지가 설계.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* Short-term */}
+            <BentoCard bg={C.paper} fg={C.ink} accent="subtle">
+              <Eyebrow color={C.fg3}>LAYER 01 · SHORT-TERM</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                단기 기억
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24 }}>
+                현재 대화의 직전 N턴. 컨텍스트 윈도우 안에서만 살아있고 세션 끝나면 사라집니다.
+              </Body>
+              <Pill color="ghost" style={{ marginTop: 24 }}>SESSION ONLY</Pill>
+            </BentoCard>
+
+            {/* Long-term · LIME hero */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>LAYER 02 · LONG-TERM</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                장기 기억
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.ink }}>
+                별도 저장소에 <b>사용자 프로필·취향·과거 결정</b>을 적어두고 매 세션 시작 때 주입.
+              </Body>
+              <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <Pill color="ink">PROFILE</Pill>
+                <Pill color="ink">PREFS</Pill>
+                <Pill color="ink">HISTORY</Pill>
+              </div>
+            </BentoCard>
+
+            {/* Pattern */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>PATTERN</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.025em', color: C.paper }}>
+                요약 → 저장 → 주입
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.fg4 }}>
+                대화 끝에 핵심 사실만 요약해 장기 저장소로. 다음 세션 첫 줄에 다시 끌어다 씁니다.
+              </Body>
+              <div style={{ marginTop: 20, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                summary → vector DB
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={33} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

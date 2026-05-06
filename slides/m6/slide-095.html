@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 095 — M6 정리</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={112} paddingTop={80} paddingBottom={80}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Eyebrow>MODULE 06 · WRAP</Eyebrow>
+            <Eyebrow color={C.fg3}>NEXT → M7 · PRESENTATION</Eyebrow>
+          </div>
+
+          <div style={{ marginTop: 'auto', marginBottom: 'auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 56, alignItems: 'center' }}>
+            <div>
+              <div style={{ fontFamily: FONT.display, fontWeight: 600, fontSize: 132, lineHeight: 0.95, letterSpacing: '-0.04em', color: C.ink }}>
+                제안서 한 권을<br/>
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  <span style={{ position: 'absolute', inset: '-4px -10px', background: C.lime, zIndex: -1, borderRadius: 8 }} />
+                  Skill로 박제
+                </span><br/>
+                했습니다.
+              </div>
+              <div style={{ marginTop: 36, fontFamily: FONT.sans, fontWeight: 500, fontSize: 32, lineHeight: 1.35, color: C.fg2, maxWidth: 720 }}>
+                RFP 한 줄에서 PDF까지의 전 과정이 <b>SKILL.md + 템플릿</b> 한 벌에 들어갔습니다. 다음은 같은 원리로 <b>발표자료</b>를 만듭니다.
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>TAKEAWAY 01</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, lineHeight: 1.15 }}>
+                  HTML-First가 정답
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22 }}>
+                  토큰 효율·시각 검증·반복 비용 모두에서 우위.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={24}>
+                <Eyebrow color={C.ink}>TAKEAWAY 02</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, lineHeight: 1.15 }}>
+                  8단계 워크플로우
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22, color: C.ink }}>
+                  RFP 분석 → 자료 수집 → 구조 → 초안 → 다듬기 → 디자인 → PDF.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={24}>
+                <Eyebrow color={C.lime}>TAKEAWAY 03</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.paper, lineHeight: 1.15 }}>
+                  Skill 1개로 배포
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22, color: C.fg4 }}>
+                  표준 템플릿 + SKILL.md = 팀이 같은 품질로 재현 가능.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+            <Eyebrow>M6 · PROPOSAL</Eyebrow>
+            <IndexMark index={95} total={TOTAL} color={C.ink} />
+          </div>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

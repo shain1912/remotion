@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 100 — 2단계 핵심 메시지 한 문장</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + key sentence */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>100 · ONE-MESSAGE RULE</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              발표 전체를 <Hl italic={false}>한 문장</Hl>으로 줄여라.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 600 }}>
+              청중이 발표 끝나고 동료에게 그대로 옮길 수 있는 한 줄. 그게 곧 발표의 제목이자 마지막 슬라이드.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>EXAMPLE</Eyebrow>
+                <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.025em', color: C.paper }}>
+                  "AI 도입으로 자료조사 시간을 <span style={{ color: C.lime }}>80% 줄일 수 있다</span>."
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 bento — formula */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>FORMULA · 01</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                대상 + 행동
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                "누가" + "무엇을 한다"의 명확한 주어·동사 한 쌍.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>FORMULA · 02</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                숫자 1개 포함
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                "30%·3시간·5만 명" 같은 구체 수치 1개로 체감을 만든다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>FORMULA · 03</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                15초 안에
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                말로 했을 때 15초 안에 끝나야 한다. 길면 메시지가 두 개라는 신호.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>BAD EXAMPLES</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                금지 패턴
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                "AI 동향"·"디지털 전환"처럼 명사 나열만 있는 제목은 메시지가 아니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={100} total={TOTAL} label="M7 · PRESENTATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

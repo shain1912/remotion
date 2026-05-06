@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 026 — 프롬프트에서 컨텍스트로</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>26 · PARADIGM SHIFT</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            한 줄 프롬프트에서 <Hl italic={false}>컨텍스트 설계</Hl>로.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            "잘 시키는 사람"이 아니라 "잘 보여주는 사람"이 이깁니다.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* Before */}
+            <BentoCard bg={C.paper} fg={C.ink} accent="subtle">
+              <Eyebrow color={C.fg3}>BEFORE</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                Prompt
+              </div>
+              <div style={{ marginTop: 16, fontFamily: FONT.sans, fontSize: 28, fontWeight: 600, color: C.ink }}>
+                한 줄로 잘 시키기
+              </div>
+              <Body style={{ marginTop: 28, fontSize: 24 }}>
+                "보고서 써줘"처럼 입력 한 덩어리에 모든 걸 담는 방식. 결과는 매번 들쭉날쭉.
+              </Body>
+              <Pill color="ghost" style={{ marginTop: 28 }}>1 INPUT</Pill>
+            </BentoCard>
+
+            {/* Now · LIME hero */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>NOW</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 64, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                Context
+              </div>
+              <div style={{ marginTop: 16, fontFamily: FONT.sans, fontSize: 28, fontWeight: 600, color: C.ink }}>
+                전체 환경을 설계
+              </div>
+              <Body style={{ marginTop: 28, fontSize: 24, color: C.ink }}>
+                역할·자료·도구·메모리·사용자 입력을 <b>한 화면에 같이</b> 깔아주는 사고법.
+              </Body>
+              <div style={{ marginTop: 24, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <Pill color="ink">SYS</Pill>
+                <Pill color="ink">DATA</Pill>
+                <Pill color="ink">TOOLS</Pill>
+                <Pill color="ink">MEM</Pill>
+              </div>
+            </BentoCard>
+
+            {/* Result */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>RESULT</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 80, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.paper }}>
+                재현성 ↑
+              </div>
+              <Body style={{ marginTop: 28, fontSize: 24, color: C.fg4 }}>
+                같은 컨텍스트면 같은 품질의 결과. 운에 기대지 않는 자동화의 출발점.
+              </Body>
+              <div style={{ marginTop: 24, display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                <span style={{ fontFamily: FONT.display, fontSize: 48, fontWeight: 600, color: C.lime, letterSpacing: '-0.03em' }}>= 자동화</span>
+                <span style={{ fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em' }}>READY</span>
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={26} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

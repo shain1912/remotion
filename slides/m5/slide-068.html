@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 068 — 자주 마주치는 함정 5가지</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  const TRAPS = [
+    { n: '01', tag: 'HALLUCINATION', ko: '환각', body: '없는 사실을 그럴듯하게. 출처 강제로 막습니다.', tone: 'paper' },
+    { n: '02', tag: 'STALE DATA',     ko: '낡은 정보', body: '학습 시점 이후 변경 누락. 발행일 강제 표시.', tone: 'lime' },
+    { n: '03', tag: 'BIAS',           ko: '편향', body: '한쪽 출처에 쏠림. 채널 4개 분리로 분산.', tone: 'paper' },
+    { n: '04', tag: 'OVERCLAIM',      ko: '과장', body: '"세계 최초" 같은 단정. 약한 표현으로 다운그레이드.', tone: 'ink' },
+    { n: '05', tag: 'EN-ONLY',        ko: '언어 편향', body: '영어 출처에만 의존. 한·영 동시 검색이 기본.', tone: 'paper' },
+  ];
+
+  function Card({ trap, isLast }) {
+    const isInk  = trap.tone === 'ink';
+    const isLime = trap.tone === 'lime';
+    const bg = isInk ? C.ink : isLime ? C.lime : C.paper;
+    const fg = isInk ? C.paper : C.ink;
+    const eyeColor = isInk ? C.lime : C.fg3;
+    const bodyColor = isInk ? C.fg4 : C.fg2;
+    return (
+      <div style={{ position: 'relative' }}>
+        <BentoCard bg={bg} fg={fg} accent={isInk || isLime ? undefined : 'subtle'} padding={28} style={{ height: '100%' }}>
+          <Eyebrow color={eyeColor}>TRAP&nbsp;{trap.n}</Eyebrow>
+          <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.035em', color: fg }}>
+            {trap.tag}
+          </div>
+          <div style={{ marginTop: 12, fontFamily: FONT.sans, fontSize: 28, fontWeight: 600, color: fg }}>
+            {trap.ko}
+          </div>
+          <Body style={{ marginTop: 16, fontSize: 22, color: bodyColor }}>
+            {trap.body}
+          </Body>
+        </BentoCard>
+        {!isLast && (
+          <div style={{
+            position: 'absolute', right: -18, top: '50%', transform: 'translateY(-50%)',
+            fontFamily: FONT.mono, fontSize: 28, color: C.ink, zIndex: 3,
+          }}>→</div>
+        )}
+      </div>
+    );
+  }
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>23 · COMMON TRAPS</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            매번 같은 자리에서 <Hl italic={false}>5가지</Hl>가 무너집니다.
+          </SlideTitle>
+          <Body style={{ marginTop: 20, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1100 }}>
+            아래 함정 5개에만 미리 가드를 걸어두면, 자료조사 품질의 90%는 지켜집니다.
+          </Body>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {TRAPS.map((t, i) => (
+              <Card key={t.n} trap={t} isLast={i === TRAPS.length - 1} />
+            ))}
+          </div>
+        </div>
+        <SlideFooter index={68} total={TOTAL} label="M5 · RESEARCH AUTOMATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

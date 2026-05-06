@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 080 — 셀프 비평 프롬프트</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          <div style={{ background: C.ink, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.lime}>STAGE</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.lime }}>
+              05
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+              셀프<br/>비평.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.lime}` }}>
+              <Eyebrow color={C.lime}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                약점 5가지 + 보강안 5가지 표가 손에 들려 있다.
+              </Body>
+            </div>
+          </div>
+
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>80 · STEP 05 · SELF-CRITIQUE</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              "이 제안서의 <Hl italic={false}>약점 5가지</Hl>를 짚어줘."
+            </SlideTitle>
+            <Body style={{ marginTop: 24, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 880 }}>
+              내가 쓴 글을 같은 모델에게 다른 역할로 다시 평가시키면, 사람이 놓친 빈틈이 보입니다.
+            </Body>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 32 }}>
+              <Eyebrow color={C.lime}>PROMPT</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.sans, fontSize: 24, color: C.lime, lineHeight: 1.55 }}>
+                "당신은 까다로운 평가위원이다. 이 제안서를 평가표 기준으로 채점하고,<br/>
+                ① 가장 약한 항목 5개 ② 각 항목의 구체적 약점 ③ 즉시 보강할 문장 3개씩을 표로 내라."
+              </div>
+            </BentoCard>
+
+            <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>ROLE 01</Eyebrow>
+                <Body style={{ marginTop: 10, fontSize: 22 }}>
+                  까다로운 평가위원 — 점수 깎을 거리 찾기.
+                </Body>
+              </BentoCard>
+              <BentoCard bg={C.lime} padding={24}>
+                <Eyebrow color={C.ink}>ROLE 02</Eyebrow>
+                <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>
+                  경쟁사 — "우리라면 어떻게 이길까" 시뮬레이션.
+                </Body>
+              </BentoCard>
+              <BentoCard bg={C.lavSoft} padding={24}>
+                <Eyebrow color={C.ink}>ROLE 03</Eyebrow>
+                <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>
+                  발주처 신입 직원 — "이해 안 되는 곳"만 짚기.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M6 · PROPOSAL</span>
+          <span style={{ color: C.ink }}>[80 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

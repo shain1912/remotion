@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 081 — HTML-First 디자인</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>81 · STEP 06 · HTML-FIRST</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            왜 PPTX·DOCX를 <Hl italic={false}>직접</Hl> 만들지 않는가.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            AI는 "구조 + 스타일 + 콘텐츠"가 분리된 포맷에서 가장 잘 일한다.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            <BentoCard bg={C.paper} fg={C.ink} accent="subtle">
+              <Eyebrow color={C.fg3}>BEFORE · PPTX</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                바이너리
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24 }}>
+                AI가 직접 못 보는 포맷. 한 글자 고치려면 매번 풀-렌더, 반복 비용 폭발.
+              </Body>
+              <div style={{ marginTop: 28, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <Pill color="ghost">SLOW</Pill>
+                <Pill color="ghost">OPAQUE</Pill>
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>NOW · HTML-FIRST</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                텍스트 + CSS
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.ink }}>
+                AI가 직접 읽고 쓴다. 토큰 효율 ↑, 시각 검증 ↑, 디자인 토큰으로 일관성 박제.
+              </Body>
+              <div style={{ marginTop: 24, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <Pill color="ink">DIFFABLE</Pill>
+                <Pill color="ink">PREVIEWABLE</Pill>
+                <Pill color="ink">REUSABLE</Pill>
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>RESULT</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em', color: C.paper }}>
+                같은 소스 → 다출력
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.fg4 }}>
+                HTML 1벌이 PDF·웹·인쇄·발표자료까지 자동 변환. 디자인 자유도는 보너스.
+              </Body>
+              <div style={{ marginTop: 24, display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                <span style={{ fontFamily: FONT.display, fontSize: 56, fontWeight: 600, color: C.lime, letterSpacing: '-0.03em' }}>1 → N</span>
+                <span style={{ fontFamily: FONT.mono, fontSize: 24, color: C.fg3, letterSpacing: '0.16em' }}>SOURCES</span>
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={81} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

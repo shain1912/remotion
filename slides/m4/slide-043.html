@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 043 — Antigravity에 MCP 추가</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>43 · MCP IN ANTIGRAVITY</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            5단계로 <Hl italic={false}>Notion MCP</Hl> 연결.
+          </SlideTitle>
+          <Body style={{ marginTop: 24, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1100 }}>
+            Antigravity 설정에서 MCP 추가 → 권한 동의 → 즉시 사용. 평균 90초.
+          </Body>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14,
+            flex: 1, alignItems: 'stretch', position: 'relative'
+          }}>
+            {/* Step 01 · Settings */}
+            <BentoCard bg={C.paper} accent="subtle" padding={28} style={{ position: 'relative' }}>
+              <Eyebrow color={C.fg3}>STEP 01</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                Settings 열기
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                좌측 하단 톱니바퀴 → MCP Servers 탭으로 진입.
+              </Body>
+              <span style={{ position: 'absolute', right: -16, top: '50%', fontFamily: FONT.mono, fontSize: 24, color: C.ink, zIndex: 2 }}>→</span>
+            </BentoCard>
+
+            {/* Step 02 · Add */}
+            <BentoCard bg={C.lime} padding={28} style={{ position: 'relative' }}>
+              <Eyebrow color={C.ink}>STEP 02</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                + Add Server
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                디렉토리에서 Notion 검색 후 한 번 클릭으로 설치.
+              </Body>
+              <span style={{ position: 'absolute', right: -16, top: '50%', fontFamily: FONT.mono, fontSize: 24, color: C.ink, zIndex: 2 }}>→</span>
+            </BentoCard>
+
+            {/* Step 03 · OAuth */}
+            <BentoCard bg={C.paper} accent="subtle" padding={28} style={{ position: 'relative' }}>
+              <Eyebrow color={C.fg3}>STEP 03</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                OAuth 동의
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                Notion 계정 로그인 · 워크스페이스 선택 · 읽기/쓰기 범위 확인.
+              </Body>
+              <span style={{ position: 'absolute', right: -16, top: '50%', fontFamily: FONT.mono, fontSize: 24, color: C.ink, zIndex: 2 }}>→</span>
+            </BentoCard>
+
+            {/* Step 04 · Permission */}
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ position: 'relative' }}>
+              <Eyebrow color={C.lime}>STEP 04</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                권한 점검
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                회사 보안 가이드에 맞춰 페이지 단위로 접근을 제한.
+              </Body>
+              <span style={{ position: 'absolute', right: -16, top: '50%', fontFamily: FONT.mono, fontSize: 24, color: C.ink, zIndex: 2 }}>→</span>
+            </BentoCard>
+
+            {/* Step 05 · Use */}
+            <BentoCard bg={C.paper} accent="subtle" padding={28}>
+              <Eyebrow color={C.fg3}>STEP 05</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                대화로 사용
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                "이번 주 회의록 다 읽고 To-Do만 뽑아줘" — 바로 동작.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={43} total={TOTAL} label="M4 · HARNESS · SKILLS · MCP" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

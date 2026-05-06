@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 099 — 1단계 청중·목적·시간 정의</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          {/* Side panel — STAGE 01 (Define) */}
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>STAGE 01</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              01
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              Define<br/>Audience.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                "누구에게, 무엇을, 몇 분에"가 한 줄로 정의된다.
+              </Body>
+            </div>
+          </div>
+
+          {/* Right body */}
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>99 · DEFINE THE BRIEF</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              누구에게, 무엇을,<br/>몇 분에 말할 것인가.
+            </SlideTitle>
+            <Body style={{ marginTop: 24, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 900 }}>
+              이 세 가지가 정해지지 않으면 슬라이드는 공허해집니다. 가장 먼저 종이에 적으세요.
+            </Body>
+
+            <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>WHO · AUDIENCE</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  청중 한 명
+                </div>
+                <Body style={{ marginTop: 14, fontSize: 22 }}>
+                  대표 페르소나 1명을 머릿속에 두고 그 사람에게만 말한다고 생각하세요.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.sans, fontSize: 22 }}>
+                  <span style={{ fontFamily: FONT.mono, color: C.fg3 }}>ex.</span> 부산교육청 김 과장
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>WHAT · GOAL</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  한 가지 액션
+                </div>
+                <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                  발표 직후 청중이 <b>무엇을 해주길</b> 원하는지. 결재·구매·동의 중 하나.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.sans, fontSize: 22 }}>
+                  <span style={{ fontFamily: FONT.mono, color: C.fg3 }}>ex.</span> 도입 결재 사인
+                </div>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>WHEN · DURATION</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                  분 단위 박스
+                </div>
+                <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                  10분 · 20분 · 60분에 따라 슬라이드 수와 깊이가 달라집니다.
+                </Body>
+                <div style={{ marginTop: 16, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 20, color: C.lime, border: `1px solid ${C.lime}` }}>
+                  ex. 15 min → 10 slides
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M7 · PRESENTATION</span>
+          <span style={{ color: C.ink }}>[99 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

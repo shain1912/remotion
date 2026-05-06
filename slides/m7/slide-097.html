@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 097 — 좋은 슬라이드 vs 나쁜 슬라이드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>97 · GOOD VS BAD</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            좋은 슬라이드는 <Hl italic={false}>3초</Hl>면 읽힌다.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            나쁜 슬라이드는 청중이 화면을 읽느라 발표를 못 듣게 만든다.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* BAD · INK */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>BAD · TEXT WALL</Eyebrow>
+              <div style={{ marginTop: 20, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                글자 절벽
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.fg4 }}>
+                10줄 본문 + 폰트 16pt + 글머리 기호 7개. 읽는 동안 발표자는 사라진다.
+              </Body>
+              <div style={{ marginTop: 18, padding: '12px 16px', background: C.ink900, borderRadius: 12, fontFamily: FONT.sans, fontSize: 22, color: C.fg4, border: `1px solid ${C.fg2}`, lineHeight: 1.45 }}>
+                · 첫째로 우리는…<br/>
+                · 둘째로 시장은…<br/>
+                · 셋째로 경쟁사가…<br/>
+                · 넷째로 한편으로…
+              </div>
+            </BentoCard>
+
+            {/* GOOD · LIME hero */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>GOOD · ONE MESSAGE</Eyebrow>
+              <div style={{ marginTop: 20, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                한 메시지 + 한 시각요소
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.ink }}>
+                제목이 결론. 본문은 근거 1~2줄. 큰 숫자나 다이어그램 1개로 시선 고정.
+              </Body>
+              <div style={{ marginTop: 18, padding: '14px 18px', background: C.paper, borderRadius: 12 }}>
+                <div style={{ fontFamily: FONT.display, fontSize: 36, fontWeight: 600, letterSpacing: '-0.03em' }}>
+                  매출 <span style={{ color: C.ink }}>+38%</span>
+                </div>
+                <div style={{ fontFamily: FONT.sans, fontSize: 20, color: C.fg2, marginTop: 4 }}>
+                  Q1 → Q2 · YoY
+                </div>
+              </div>
+            </BentoCard>
+
+            {/* RULES */}
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>RULES · 3 / 7 / 1</Eyebrow>
+              <div style={{ marginTop: 20, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                숫자로 외우기
+              </div>
+              <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
+                  <span style={{ fontFamily: FONT.display, fontSize: 56, fontWeight: 600, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1, minWidth: 80 }}>3</span>
+                  <Body style={{ fontSize: 22 }}>초 안에 핵심 메시지가 보여야 한다.</Body>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
+                  <span style={{ fontFamily: FONT.display, fontSize: 56, fontWeight: 600, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1, minWidth: 80 }}>7</span>
+                  <Body style={{ fontSize: 22 }}>줄 이상의 본문은 무조건 분할.</Body>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 16 }}>
+                  <span style={{ fontFamily: FONT.display, fontSize: 56, fontWeight: 600, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1, minWidth: 80 }}>1</span>
+                  <Body style={{ fontSize: 22 }}>슬라이드당 메시지 한 개만.</Body>
+                </div>
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={97} total={TOTAL} label="M7 · PRESENTATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

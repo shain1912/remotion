@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 039 — Skills 개념</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>39 · SKILLS</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              반복 작업을 <Hl italic={false}>자산</Hl>으로 박제하기.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              매번 같은 프롬프트를 다시 쓰지 마세요. <b>한 번 정의하면 영원히 호출 가능한 능력</b>이 Skill입니다.
+            </Body>
+            <BentoCard bg={C.lime} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.ink}>CORE IDEA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24, color: C.ink }}>
+                <b>프롬프트는 한 번 쓰는 메모, Skill은 다시 부르는 함수.</b>
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>WHAT</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                재사용 가능한 능력
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                트리거 + 지시 + 예시 + 검증 절차의 묶음. 마크다운 한 파일로 정의됩니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>WHEN</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                같은 작업 3회 이상
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                "또 이거?" 싶으면 Skill 후보. 회의록 정리 · 보고서 톤 맞추기 · 메일 분류.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>HOW</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                SKILL.md 한 파일
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                Anthropic · Antigravity · Claude Code 모두 같은 표준을 씁니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>WHY</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                팀 자산이 됩니다
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                개인 노하우가 GitHub에 올라가는 순간 회사의 능력이 됩니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={39} total={TOTAL} label="M4 · HARNESS · SKILLS · MCP" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

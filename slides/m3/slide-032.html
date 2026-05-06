@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 032 — RAG 한 페이지 개요</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  const STEPS = [
+    { kicker: '01 · QUERY',    title: '질문',         body: '사용자가 묻는 한 줄.',          bg: C.paper, fg: C.ink, accent: 'subtle', kickerColor: C.fg3 },
+    { kicker: '02 · RETRIEVE', title: '검색',         body: '벡터 DB에서 관련 청크 K개.',     bg: C.lime,  fg: C.ink, accent: null,    kickerColor: C.ink },
+    { kicker: '03 · INJECT',   title: '주입',         body: '검색 결과를 컨텍스트에 붙임.',    bg: C.paper, fg: C.ink, accent: 'subtle', kickerColor: C.fg3 },
+    { kicker: '04 · GENERATE', title: '생성',         body: '근거 위에서 LLM이 답변.',         bg: C.ink,   fg: C.paper, accent: null,  kickerColor: C.lime },
+    { kicker: '05 · CITE',     title: '출처 표시',     body: '답변 옆에 출처 링크.',           bg: C.paper, fg: C.ink, accent: 'subtle', kickerColor: C.fg3 },
+  ];
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>32 · RAG OVERVIEW</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            <Hl italic={false}>검색 + 생성</Hl> — 환각 줄이는 가장 확실한 방법.
+          </SlideTitle>
+          <Body style={{ marginTop: 24, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1100 }}>
+            모델 안의 기억에 의존하지 않고, <b>매 질문마다 회사 자료에서 근거를 찾아 함께 보여줍니다</b>. 5단계로 끝.
+          </Body>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14,
+            flex: 1, alignItems: 'stretch', position: 'relative'
+          }}>
+            {STEPS.map((it, i) => (
+              <div key={i} style={{ position: 'relative' }}>
+                <BentoCard bg={it.bg} fg={it.fg} accent={it.accent} padding={28} style={{ height: '100%' }}>
+                  <Eyebrow color={it.kickerColor}>{it.kicker}</Eyebrow>
+                  <div style={{ marginTop: 20, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.025em' }}>
+                    {it.title}
+                  </div>
+                  <Body style={{ marginTop: 16, fontSize: 24, color: it.fg === C.paper ? C.fg4 : C.fg2 }}>
+                    {it.body}
+                  </Body>
+                </BentoCard>
+                {i < STEPS.length - 1 && (
+                  <div style={{
+                    position: 'absolute', right: -18, top: '50%', transform: 'translateY(-50%)',
+                    fontFamily: FONT.mono, fontSize: 28, color: C.ink, zIndex: 3
+                  }}>→</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <SlideFooter index={32} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

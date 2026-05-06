@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 087 — Antigravity 워크플로우 시연</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>87 · ANTIGRAVITY · LIVE</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            <Hl italic={false}>Browser Preview</Hl>로 실시간 확인.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            HTML을 고치는 즉시 옆 창에 반영 — 디자인·문구·표 한 번에.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={36}>
+              <Eyebrow color={C.fg3}>STEP 01</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                Open HTML
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.fg2 }}>
+                proposal.html을 Antigravity 워크스페이스로 드래그.
+              </Body>
+              <div style={{ marginTop: 14, padding: '12px 16px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22 }}>
+                proposal.html
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={36}>
+              <Eyebrow color={C.ink}>STEP 02</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                Side Preview
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.ink }}>
+                우측 패널에서 실시간 렌더. 저장하면 즉시 갱신.
+              </Body>
+              <div style={{ marginTop: 14, padding: '12px 16px', background: C.paper, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.ink }}>
+                Cmd + Shift + V
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={36}>
+              <Eyebrow color={C.lime}>STEP 03</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 44, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                Export PDF
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.fg4 }}>
+                "이 HTML을 A4 PDF로 변환해줘" 한 줄 — Skill이 알아서 처리.
+              </Body>
+              <div style={{ marginTop: 14, padding: '12px 16px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                /export pdf
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={87} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 107 — 데이터 시각화 자동화</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  // Demo bar chart data
+  const BARS = [
+    { label: 'Q1', v: 42 },
+    { label: 'Q2', v: 58 },
+    { label: 'Q3', v: 71 },
+    { label: 'Q4', v: 88 },
+  ];
+  const MAX = 100;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>107 · DATA → CHART</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              CSV를 던지면<br/><Hl italic={false}>차트</Hl>가 그려진다.
+            </SlideTitle>
+            <Body style={{ marginTop: 28, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 600 }}>
+              엑셀 표를 그대로 붙여 넣으면 AI가 차트 컴포넌트로 변환. 사람은 메시지에만 집중.
+            </Body>
+
+            <div style={{ marginTop: 'auto' }}>
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>PROMPT TEMPLATE</Eyebrow>
+                <div style={{ marginTop: 14, padding: 16, background: C.ink900, borderRadius: 12, fontFamily: FONT.sans, fontSize: 22, color: C.lime, lineHeight: 1.55, border: `1px solid ${C.fg2}` }}>
+                  "이 CSV를 라임 막대그래프로 변환해줘. 우리 디자인 토큰(C.lime, FONT.mono)을 쓰고 1920×1080에 맞춰서."
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 — chart preview + 3 metadata cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1.4fr 1fr', gap: 18 }}>
+            {/* Chart preview spanning 2 columns */}
+            <BentoCard bg={C.lime} style={{ gridColumn: '1 / span 2' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <Eyebrow color={C.ink}>OUTPUT · BAR CHART</Eyebrow>
+                <span style={{ fontFamily: FONT.mono, fontSize: 22, color: C.ink, letterSpacing: '0.16em' }}>2026 · YoY</span>
+              </div>
+              <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 28, alignItems: 'end', height: 320 }}>
+                {BARS.map((b, i) => {
+                  const barH = (b.v / MAX) * 220;
+                  return (
+                    <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      <div style={{ fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, marginBottom: 8, letterSpacing: '-0.02em' }}>
+                        {b.v}
+                      </div>
+                      <div style={{ width: '100%', height: barH, background: C.ink, borderRadius: '8px 8px 0 0' }} />
+                      <div style={{ marginTop: 10, fontFamily: FONT.mono, fontSize: 22, color: C.ink, letterSpacing: '0.12em' }}>
+                        {b.label}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>INPUT</Eyebrow>
+              <div style={{ marginTop: 14, padding: '12px 14px', background: C.canvasAlt, borderRadius: 10, fontFamily: FONT.mono, fontSize: 20, lineHeight: 1.5 }}>
+                Q1,42<br/>Q2,58<br/>Q3,71<br/>Q4,88
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22 }}>
+                CSV 4줄. 그게 전부.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>TIME SAVED</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 80, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.lime }}>
+                30s
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                수동 차트 30분 → 자동 30초. 60배 빠름.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={107} total={TOTAL} label="M7 · PRESENTATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

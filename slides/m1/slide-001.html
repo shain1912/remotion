@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 001 — Cover</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage {
+      width: 1920px; height: 1080px;
+      position: relative; overflow: hidden;
+      background: #E6E7EB; color: #0A0A0A;
+    }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  // -------- Brand logo (KODE KOREA) ---------------------------------
+  function KodeLogo({ height = 48, invert }) {
+    return (
+      <img
+        src="../../handoff/assets/kode-korea-logo.png"
+        alt="KODE KOREA"
+        style={{ height, display: 'block', filter: invert ? 'invert(1)' : 'none' }}
+      />
+    );
+  }
+
+  const TOTAL = 120;
+
+  // External demo image (Unsplash CDN) — replace with project asset later
+  const COVER_IMG = 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format';
+  const FACE_IMG  = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format';
+
+  // -------- Slide 001 · Cover (Pattern E) ---------------------------
+  function Slide001Cover() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={112} paddingTop={80} paddingBottom={80}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+
+          {/* Top row: logo + meta */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <KodeLogo height={48} />
+            <Eyebrow color={C.fg3}>2026 · CODE KOREA · v1</Eyebrow>
+          </div>
+
+          {/* Body */}
+          <div style={{
+            marginTop: 'auto', marginBottom: 'auto',
+            display: 'grid', gridTemplateColumns: '1.4fr 1fr',
+            gap: 56, alignItems: 'center'
+          }}>
+            {/* Left: Display copy */}
+            <div>
+              <div style={{
+                fontFamily: FONT.display, fontWeight: 600,
+                fontSize: 152, lineHeight: 0.92,
+                letterSpacing: '-0.04em', color: C.ink, textWrap: 'balance'
+              }}>
+                Ship with<br/>
+                Gemini ×{' '}
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  <span style={{ position: 'absolute', inset: '-4px -10px', background: C.lime, zIndex: -1, borderRadius: 8 }} />
+                  Antigravity.
+                </span>
+              </div>
+              <div style={{
+                marginTop: 36,
+                fontFamily: FONT.sans, fontWeight: 500,
+                fontSize: 40, lineHeight: 1.25, color: C.fg2
+              }}>
+                12시간에 끝내는<br/>
+                <span style={{ color: C.ink, fontWeight: 600 }}>
+                  자료조사 · 제안서 · 발표자료 자동화
+                </span>
+              </div>
+
+              {/* Output pills (3 산출물) */}
+              <div style={{ marginTop: 40, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Pill color="ink">M5 · RESEARCH</Pill>
+                <Pill color="ink">M6 · PROPOSAL</Pill>
+                <Pill color="ink">M7 · DECK</Pill>
+              </div>
+            </div>
+
+            {/* Right: image + facilitator card */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+              <div style={{ borderRadius: 24, overflow: 'hidden', height: 280, background: C.ink }}>
+                <img src={COVER_IMG} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
+                  <div>
+                    <Eyebrow color={C.lime}>FACILITATOR</Eyebrow>
+                    <div style={{ fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.paper, marginTop: 4 }}>
+                      조성호 · 코드코리아
+                    </div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <Eyebrow color={C.lime}>DURATION</Eyebrow>
+                    <div style={{ fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.lime, marginTop: 4 }}>
+                      12 HRS
+                    </div>
+                  </div>
+                </div>
+              </BentoCard>
+
+              {/* Module count strip */}
+              <BentoCard bg={C.lime} fg={C.ink} padding={24}>
+                <Eyebrow color={C.ink}>CURRICULUM</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontWeight: 600, fontSize: 40, lineHeight: 1.0, letterSpacing: '-0.02em' }}>
+                  7 MODULES · 120 SLIDES
+                </div>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Footer rule */}
+          <div style={{
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+            paddingTop: 24, borderTop: `1px solid ${C.ink}`
+          }}>
+            <Eyebrow>GEMINI × ANTIGRAVITY · INTERNAL CURRICULUM</Eyebrow>
+            <IndexMark index={1} total={TOTAL} color={C.ink} />
+          </div>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  // Mount
+  const root = document.getElementById('stage');
+  ReactDOM.createRoot(root).render(<Slide001Cover />);
+</script>
+
+</body>
+</html>

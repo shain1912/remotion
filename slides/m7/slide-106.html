@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 106 — 7단계 시각화 요소 추가</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={0} paddingTop={0} paddingBottom={0}>
+        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', height: '100%' }}>
+          {/* Side panel — STAGE 04 (Visualize) */}
+          <div style={{ background: C.lime, padding: 64, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow color={C.ink}>STAGE 04</Eyebrow>
+            <div style={{ marginTop: 32, fontFamily: FONT.display, fontWeight: 600, fontSize: 240, lineHeight: 0.85, letterSpacing: '-0.05em', color: C.ink }}>
+              07
+            </div>
+            <div style={{ marginTop: 24, fontFamily: FONT.display, fontWeight: 600, fontSize: 44, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.ink }}>
+              Visualize<br/>It.
+            </div>
+            <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+              <Eyebrow color={C.ink}>EXIT CRITERIA</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                모든 슬라이드에 시각요소 1개 이상 들어가 있다.
+              </Body>
+            </div>
+          </div>
+
+          {/* Right body */}
+          <div style={{ padding: 80, display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>106 · ADD VISUALS</Eyebrow>
+            <SlideTitle style={{ marginTop: 24 }}>
+              글이 7줄 넘으면<br/><Hl italic={false}>그림</Hl>으로 바꿔라.
+            </SlideTitle>
+            <Body style={{ marginTop: 20, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 1000 }}>
+              차트·다이어그램·아이콘은 글보다 5배 빨리 읽힙니다. AI에게 데이터·텍스트만 주면 컴포넌트로 자동 생성.
+            </Body>
+
+            <div style={{ marginTop: 36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, flex: 1 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>TYPE 01 · CHART</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  차트 · 그래프
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22 }}>
+                  CSV → bar/line/pie 컴포넌트. 비교·추세·비율은 그림이 정답.
+                </Body>
+                <Pill color="ghost" style={{ marginTop: 14 }}>RECHARTS · D3</Pill>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={28}>
+                <Eyebrow color={C.ink}>TYPE 02 · DIAGRAM</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  다이어그램 · 플로우
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                  Mermaid·SVG로 워크플로우·구조도 자동화. 절차·관계는 도식으로.
+                </Body>
+                <Pill color="ink" style={{ marginTop: 14 }}>MERMAID · SVG</Pill>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+                <Eyebrow color={C.lime}>TYPE 03 · ICON</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                  아이콘 · 픽토그램
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                  카테고리 라벨에 아이콘 1개. Lucide·Heroicons에서 일관된 셋만.
+                </Body>
+                <Pill color="lime" style={{ marginTop: 14 }}>LUCIDE · HEROICONS</Pill>
+              </BentoCard>
+
+              <BentoCard bg={C.paper} accent="subtle" padding={28}>
+                <Eyebrow color={C.fg3}>TYPE 04 · BIG NUMBER</Eyebrow>
+                <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                  큰 숫자 한 개
+                </div>
+                <Body style={{ marginTop: 12, fontSize: 22 }}>
+                  핵심 지표 1개를 100pt 이상으로. 가장 강력한 시각요소.
+                </Body>
+                <Pill color="ghost" style={{ marginTop: 14 }}>BIGNUMBER</Pill>
+              </BentoCard>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 420 + 80, right: 80, bottom: 32, display: 'flex', justifyContent: 'space-between', fontFamily: FONT.mono, fontSize: 22, color: C.fg3, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+          <span style={{ color: C.ink }}>● HARNESS&nbsp;ENG · 2026</span>
+          <span>M7 · PRESENTATION</span>
+          <span style={{ color: C.ink }}>[106 / 120]</span>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

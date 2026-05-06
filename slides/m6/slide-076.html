@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 076 — 3단계 구조 설계</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>76 · STEP 03 · STRUCTURE</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              먼저 <Hl italic={false}>5가지 표준</Hl> 중에서 고르고, 그다음 비튼다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              백지에서 목차를 짜지 말 것. 검증된 5가지 골격 중 RFP에 맞는 것을 베이스로 잡고 발주처 평가표 순서로 비틉니다.
+            </Body>
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.lime}>RULE OF THUMB</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24, color: C.fg4 }}>
+                <b style={{ color: C.paper }}>평가표 가중치 순서 = 목차 순서.</b> 심사위원이 위에서 아래로 점수를 매긴다.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr', gap: 14 }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={26}>
+              <Eyebrow color={C.fg3}>STD 01 · GENERIC</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                요약·배경·해결안·수행계획·예산
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22 }}>일반 용역. 가장 무난한 기본형.</Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={26}>
+              <Eyebrow color={C.ink}>STD 02 · TECH BUILD</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                문제·아키텍처·MVP·로드맵·팀
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>SI / 개발 과업 전용.</Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle" padding={26}>
+              <Eyebrow color={C.fg3}>STD 03 · CONSULT</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                진단·가설·검증·권고·이행
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22 }}>전략·컨설팅 과업.</Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle" padding={26}>
+              <Eyebrow color={C.fg3}>STD 04 · EDU</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                대상·목표·커리큘럼·운영·평가
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22 }}>교육·연수 과업.</Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft} padding={26}>
+              <Eyebrow color={C.ink}>STD 05 · GRANT</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                필요성·목표·내용·성과·예산
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>지원금·R&D 사업.</Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={26}>
+              <Eyebrow color={C.lime}>STD 00 · CUSTOM</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.paper }}>
+                평가표 그대로 베끼기
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.fg4 }}>심사 가중치 큰 항목 = 첫 챕터.</Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={76} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

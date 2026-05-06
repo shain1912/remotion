@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 094 — 자주 발생하는 문제 + 해결</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>94 · TROUBLESHOOTING</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              제출 직전 <Hl italic={false}>4대 사고</Hl><br/>한 줄 처방.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 520 }}>
+              모두 한 번씩은 겪습니다. 처방을 미리 알아 두면 새벽 2시에 안 헤맵니다.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>RULE</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  4대 처방을 SKILL.md <b>troubleshooting</b> 섹션에 박제 → 다음 사람부터는 자동.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={32}>
+              <Eyebrow color={C.fg3}>FIX 01 · TABLE</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 38, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                표 깨짐
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.fg2 }}>
+                thead 반복 + tr에 break-inside: avoid.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={32}>
+              <Eyebrow color={C.ink}>FIX 02 · FONT</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 38, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                한글 깨짐
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                @font-face로 로컬 ttf 직접 임베드.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={32}>
+              <Eyebrow color={C.lime}>FIX 03 · PAGE</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 38, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                빈 페이지
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                section margin-bottom 줄이고 page-break-after: auto.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft} padding={32}>
+              <Eyebrow color={C.ink}>FIX 04 · IMAGE</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 38, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                이미지 잘림
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.ink }}>
+                figure에 break-inside: avoid + max-height 명시.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={94} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

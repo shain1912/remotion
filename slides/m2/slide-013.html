@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 013 — 출력 형식 통제</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>13 · OUTPUT FORMAT</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            형식을 <Hl italic={false}>강제</Hl>하면 후처리가 사라집니다.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            "표로 줘 / JSON으로 줘 / 마크다운으로 줘" — 한 줄로 자동화 비용을 절반으로.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>FORMAT 01</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                Markdown
+              </div>
+              <div style={{ marginTop: 18, padding: '16px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.ink, lineHeight: 1.5 }}>
+                ## 결론<br/>
+                - 항목 1<br/>
+                - 항목 2
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22 }}>
+                보고서 · 노트 · 슬라이드용. 사람이 읽기 좋습니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>FORMAT 02 · DEFAULT</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                JSON
+              </div>
+              <div style={{ marginTop: 18, padding: '16px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.ink, lineHeight: 1.5 }}>
+                {`{ "title":"...",`}<br/>
+                &nbsp;&nbsp;{`"items":[...],`}<br/>
+                &nbsp;&nbsp;{`"score":0.87 }`}
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.ink }}>
+                <b>스키마를 함께 주입</b>하면 자동화·연동이 거의 무료가 됩니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>FORMAT 03</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.paper }}>
+                Table
+              </div>
+              <div style={{ marginTop: 18, padding: '16px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, lineHeight: 1.5, border: `1px solid ${C.lime}` }}>
+                | 항목 | 담당 | 기한 |<br/>
+                |------|------|------|<br/>
+                | A&nbsp;&nbsp;&nbsp; | 홍 &nbsp;&nbsp; | 5/3 &nbsp;|
+              </div>
+              <Body style={{ marginTop: 16, fontSize: 22, color: C.fg4 }}>
+                액션 아이템 · 비교 · 견적. 컬럼명까지 함께 지정하세요.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={13} total={TOTAL} label="M2 · PROMPT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

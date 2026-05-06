@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 070 — M5 정리 + 리서치 Skill 배포</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas} paddingX={112} paddingTop={80} paddingBottom={80}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Eyebrow>MODULE 05 · WRAP</Eyebrow>
+            <Eyebrow color={C.fg3}>NEXT → M6 · PROPOSAL</Eyebrow>
+          </div>
+
+          <div style={{ marginTop: 'auto', marginBottom: 'auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 56, alignItems: 'center' }}>
+            <div>
+              <div style={{ fontFamily: FONT.display, fontWeight: 600, fontSize: 132, lineHeight: 0.95, letterSpacing: '-0.04em', color: C.ink }}>
+                리서치는<br/>
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  <span style={{ position: 'absolute', inset: '-4px -10px', background: C.lime, zIndex: -1, borderRadius: 8 }} />
+                  Skill로 박제
+                </span><br/>
+                해서 끝.
+              </div>
+              <div style={{ marginTop: 36, fontFamily: FONT.sans, fontWeight: 500, fontSize: 32, lineHeight: 1.35, color: C.fg2, maxWidth: 720 }}>
+                오늘 만든 8단계 워크플로우를 표준 <b>SKILL.md</b>로 배포합니다. 다음은 이 노트를 재료로 쓰는 <b>제안서 작성</b>입니다.
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>TAKEAWAY 01</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, lineHeight: 1.15 }}>
+                  8단계가 곧 품질
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22 }}>
+                  주제 → 쿼리 → 검색 → 평가 → 요약 → 비교 → 출처 → 노트.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.lime} padding={24}>
+                <Eyebrow color={C.ink}>TAKEAWAY 02</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.ink, lineHeight: 1.15 }}>
+                  출처 강제 + 인용 검증
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22, color: C.ink }}>
+                  환각은 모델이 아니라 워크플로우에서 잡습니다.
+                </Body>
+              </BentoCard>
+
+              <BentoCard bg={C.ink} fg={C.paper} padding={24}>
+                <Eyebrow color={C.lime}>SHIPPED · SKILL.md</Eyebrow>
+                <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.paper, lineHeight: 1.15 }}>
+                  수강생 전원 배포
+                </div>
+                <Body style={{ marginTop: 8, fontSize: 22, color: C.fg4 }}>
+                  표준 research SKILL.md 1개 — 오늘부터 그대로 씁니다.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', paddingTop: 24, borderTop: `1px solid ${C.ink}` }}>
+            <Eyebrow>M5 · RESEARCH AUTOMATION</Eyebrow>
+            <IndexMark index={70} total={TOTAL} color={C.ink} />
+          </div>
+        </div>
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

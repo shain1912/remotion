@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 040 — SKILL.md 작성법</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>40 · SKILL.MD ANATOMY</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              네 칸이면 <Hl italic={false}>완성</Hl>.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              트리거 · 지시 · 예시 · 검증. 이 네 가지를 마크다운으로 박제하면 Skill입니다.
+            </Body>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.lime}>FILE PATH</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.mono, fontSize: 26, color: C.lime }}>
+                .claude/skills/{'{name}'}/SKILL.md
+              </div>
+              <Body style={{ marginTop: 12, fontSize: 22, color: C.fg4 }}>
+                Anthropic · Antigravity 모두 동일 경로 규약을 따릅니다.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>BLOCK 01 · TRIGGER</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                언제 발동하나
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                "회의록 정리해줘" 같은 키워드 · 파일 확장자 · 명령어로 매칭됩니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>BLOCK 02 · INSTRUCTION</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                무엇을 어떻게
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                단계별 절차 · 출력 포맷 · 사용할 도구를 명시합니다. Skill의 본문.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>BLOCK 03 · EXAMPLE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                좋은 입출력 한 쌍
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                Few-shot 한 개만 잘 박아도 결과 안정성이 크게 올라갑니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>BLOCK 04 · VERIFY</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                통과 조건
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                "필수 항목 N개 포함", "JSON 파싱 성공" 등 자체 점검 룰을 적습니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={40} total={TOTAL} label="M4 · HARNESS · SKILLS · MCP" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

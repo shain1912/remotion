@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 020 — 프롬프트 디버깅</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  const STEPS = [
+    { n: '01', kicker: 'OBSERVE', title: '결과 분석', body: '어디가 어떻게 틀렸는지 한 줄로 적습니다.', tone: 'paper' },
+    { n: '02', kicker: 'HYPOTHESIZE', title: '가설 1개', body: '"맥락 부족" / "형식 모호" / "예시 필요" 중 하나.', tone: 'lime' },
+    { n: '03', kicker: 'EDIT', title: '한 곳만 수정', body: '여러 변수를 동시에 바꾸면 무엇이 듣는지 못 잡아냅니다.', tone: 'paper' },
+    { n: '04', kicker: 'A / B', title: '두 버전 비교', body: '같은 입력 · 다른 프롬프트로 응답을 나란히 봅니다.', tone: 'ink' },
+    { n: '05', kicker: 'KEEP', title: '템플릿화', body: '이긴 버전을 라이브러리에 박제하고 다음으로 갑니다.', tone: 'paper' },
+  ];
+
+  function StepCard({ step, isLast }) {
+    const palette = {
+      paper: { bg: C.paper, fg: C.ink, eb: C.fg3, accent: 'subtle' },
+      lime:  { bg: C.lime,  fg: C.ink, eb: C.ink, accent: undefined },
+      ink:   { bg: C.ink,   fg: C.paper, eb: C.lime, accent: undefined },
+    }[step.tone];
+    return (
+      <div style={{ position: 'relative' }}>
+        <BentoCard bg={palette.bg} fg={palette.fg} accent={palette.accent} padding={28} style={{ height: '100%' }}>
+          <Eyebrow color={palette.eb}>{step.n} · {step.kicker}</Eyebrow>
+          <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 36, fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.025em' }}>
+            {step.title}
+          </div>
+          <Body style={{ marginTop: 14, fontSize: 22, color: step.tone === 'ink' ? C.fg4 : (step.tone === 'lime' ? C.ink : C.fg2) }}>
+            {step.body}
+          </Body>
+        </BentoCard>
+        {!isLast && (
+          <div style={{
+            position: 'absolute', right: -14, top: '50%', transform: 'translateY(-50%)',
+            width: 28, height: 28, borderRadius: 999, background: C.ink, color: C.lime,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontFamily: FONT.mono, fontSize: 18, fontWeight: 700, zIndex: 2,
+          }}>
+            ›
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>20 · DEBUG LOOP</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            프롬프트도 <Hl italic={false}>코드처럼</Hl> 디버깅합니다.
+          </SlideTitle>
+          <Body style={{ marginTop: 18, fontSize: TYPE_SCALE.lead, color: C.fg2 }}>
+            관찰 → 가설 → 한 줄 수정 → A/B → 박제. 다섯 칸 루프 한 바퀴면 대부분 잡힙니다.
+          </Body>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {STEPS.map((s, i) => (
+              <StepCard key={s.n} step={s} isLast={i === STEPS.length - 1} />
+            ))}
+          </div>
+        </div>
+        <SlideFooter index={20} total={TOTAL} label="M2 · PROMPT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

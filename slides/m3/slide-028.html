@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 028 — 시스템 프롬프트 설계</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>28 · SYSTEM PROMPT</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            시스템 프롬프트는 <Hl italic={false}>세 블록</Hl>으로 쓴다.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            역할 → 정책 → 출력 규칙. 이 순서면 흔들리지 않습니다.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 64,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* Role */}
+            <BentoCard bg={C.paper} fg={C.ink} accent="subtle">
+              <Eyebrow color={C.fg3}>BLOCK 01 · ROLE</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                역할
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24 }}>
+                "너는 누구이고 누구를 위해 일하는가." 직무·전문성·청자를 한 문장으로.
+              </Body>
+              <div style={{ marginTop: 20, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.sans, fontWeight: 600, fontSize: 22, color: C.ink }}>
+                "코드코리아 제안서 어시스턴트"
+              </div>
+            </BentoCard>
+
+            {/* Policy · LIME hero */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>BLOCK 02 · POLICY</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em' }}>
+                정책
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.ink }}>
+                <b>해도 되는 것·하면 안 되는 것</b>을 명시. 추측 금지·근거 명시·언어 한국어 등.
+              </Body>
+              <div style={{ marginTop: 20, padding: '14px 18px', background: C.paper, borderRadius: 12, fontFamily: FONT.sans, fontWeight: 600, fontSize: 22, color: C.ink }}>
+                "근거 없으면 모른다고 답"
+              </div>
+            </BentoCard>
+
+            {/* Output */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>BLOCK 03 · OUTPUT</Eyebrow>
+              <div style={{ marginTop: 24, fontFamily: FONT.display, fontSize: 56, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em', color: C.paper }}>
+                출력 규칙
+              </div>
+              <Body style={{ marginTop: 24, fontSize: 24, color: C.fg4 }}>
+                형식·길이·톤. 마크다운/JSON, 글자수, 격식 — 다음 단계가 받아쓰기 쉽게.
+              </Body>
+              <div style={{ marginTop: 20, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 22, color: C.lime, border: `1px solid ${C.lime}` }}>
+                JSON · 5 FIELDS · 800ch
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={28} total={TOTAL} label="M3 · CONTEXT ENGINEERING" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

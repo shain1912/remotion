@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 108 — 다이어그램 자동화</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Eyebrow>108 · DIAGRAM AUTOMATION</Eyebrow>
+          <SlideTitle style={{ marginTop: 28 }}>
+            다이어그램은 <Hl italic={false}>코드로</Hl> 그리게 시킨다.
+          </SlideTitle>
+          <SlideSubtitle style={{ marginTop: 16, color: C.fg2 }}>
+            손으로 그리지 마세요. 텍스트 한 줄이면 1분 안에 나옵니다.
+          </SlideSubtitle>
+
+          <div style={{
+            marginTop: 56,
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
+            flex: 1, alignItems: 'stretch'
+          }}>
+            {/* INK · Mermaid */}
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>OPTION 01 · MERMAID</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em', color: C.paper }}>
+                플로우 · 시퀀스 · 간트
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                텍스트 DSL → 즉시 SVG. 버전 관리 가능, 수정 비용 0.
+              </Body>
+              <div style={{ marginTop: 16, padding: '14px 18px', background: C.ink900, borderRadius: 12, fontFamily: FONT.mono, fontSize: 20, color: C.lime, border: `1px solid ${C.lime}`, lineHeight: 1.5 }}>
+                graph LR<br/>
+                A[조사] --&gt; B[제안서]<br/>
+                B --&gt; C[발표]
+              </div>
+            </BentoCard>
+
+            {/* LIME · Inline SVG (hero) */}
+            <BentoCard bg={C.lime} fg={C.ink}>
+              <Eyebrow color={C.ink}>OPTION 02 · INLINE SVG</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                커스텀 다이어그램
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                AI에게 "SVG로 그려줘"만 요청. 토큰 색·크기 자유 제어.
+              </Body>
+              <svg viewBox="0 0 280 80" style={{ marginTop: 18, width: '100%', height: 70 }}>
+                <circle cx="40" cy="40" r="22" fill={C.ink}/>
+                <circle cx="140" cy="40" r="22" fill={C.paper} stroke={C.ink} strokeWidth="2"/>
+                <circle cx="240" cy="40" r="22" fill={C.ink}/>
+                <line x1="62" y1="40" x2="118" y2="40" stroke={C.ink} strokeWidth="2"/>
+                <line x1="162" y1="40" x2="218" y2="40" stroke={C.ink} strokeWidth="2"/>
+              </svg>
+            </BentoCard>
+
+            {/* PAPER · Excalidraw / draw.io */}
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>OPTION 03 · HAND-DRAWN</Eyebrow>
+              <div style={{ marginTop: 18, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+                Excalidraw · draw.io
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22 }}>
+                구조가 복잡할 때만. PNG로 export 후 슬라이드에 삽입.
+              </Body>
+              <div style={{ marginTop: 16, padding: '14px 18px', background: C.canvasAlt, borderRadius: 12, fontFamily: FONT.mono, fontSize: 20, color: C.fg2, lineHeight: 1.5 }}>
+                excalidraw.com<br/>
+                → export PNG @2x
+              </div>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={108} total={TOTAL} label="M7 · PRESENTATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

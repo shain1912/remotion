@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 110 — HTML → PPTX 변환</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>110 · HTML TO PPTX</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              변환은 <Hl italic={false}>이미지 삽입</Hl>이 정답.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 520 }}>
+              구조 매핑 방식은 디자인이 깨집니다. <b>1920×1080 PNG로 캡처해서 빈 슬라이드에 풀사이즈로 박는</b> 게 가장 안전합니다.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>STACK</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  Puppeteer로 캡처 → python-pptx로 삽입 → 발표자 노트 자동 입력
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 2x2 bento */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>METHOD A · STRUCT MAP</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                구조 매핑
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                HTML 노드 → PPTX 도형. 폰트·간격·색이 깨질 위험. <b>비추천.</b>
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>METHOD B · IMG INSERT</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                이미지 삽입
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                디자인 100% 보존. 텍스트 검색 불가지만 시각 품질 유지.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>TOOL · CAPTURE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                Puppeteer
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                <code style={{ fontFamily: FONT.mono, fontSize: 22, color: C.lime }}>page.screenshot</code> · 1920×1080 · PNG
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>TOOL · ASSEMBLE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                python-pptx
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                16:9 빈 PPTX → 슬라이드별 이미지 풀사이즈 + 발표자 노트
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={110} total={TOTAL} label="M7 · PRESENTATION" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

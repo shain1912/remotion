@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 006 — 환각</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + warning */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>06 · HALLUCINATION</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              모를 때도 <Hl italic={false}>자신 있게</Hl> 답합니다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 520 }}>
+              사실 검증을 모델 안에서 끝내려 하지 마세요. <b>외부 근거</b>를 항상 함께 흘려보내야 합니다.
+            </Body>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.lime}>EXAMPLE · CASE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 32, fontWeight: 600, lineHeight: 1.15, color: C.paper }}>
+                "○○○ 교수가 2019년 발표한 논문…"
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                존재하지 않는 인용·책·사람을 그럴듯하게 만들어내는 게 환각의 전형입니다.
+              </Body>
+            </BentoCard>
+          </div>
+
+          {/* Right: 3 principles bento */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>RULE 01</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                근거를 함께 요청
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                "출처 URL과 함께 답해줘", "근거 문장을 인용해줘"를 프롬프트에 항상.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>RULE 02</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                실제 문서를 주입 (RAG)
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                기억에 의존하게 두지 말고, 답에 쓸 자료 자체를 컨텍스트로 함께 넣습니다.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>RULE 03</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                검증 단계 추가
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                "방금 답을 다시 검토해 인용·숫자가 자료와 일치하는지 점검" 한 턴 더.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>BAD vs GOOD</Eyebrow>
+              <div style={{ marginTop: 14, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.paper, lineHeight: 1.2 }}>
+                ✗ "이거 맞아?"
+              </div>
+              <div style={{ marginTop: 8, fontFamily: FONT.display, fontSize: 28, fontWeight: 600, color: C.lime, lineHeight: 1.2 }}>
+                ✓ "근거 URL과 함께 다시 답해."
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                질문 한 줄을 바꾸는 것만으로 환각률이 크게 떨어집니다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={6} total={TOTAL} label="M1 · AI/LLM CORE" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

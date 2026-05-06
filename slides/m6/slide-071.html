@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 071 — 제안서가 왜 어려운가</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>71 · WHY PROPOSALS HURT</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              제안서는 늘 <Hl italic={false}>4중고</Hl>에 부딪힌다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 540 }}>
+              짧은 마감, 흩어진 자료, 복잡한 평가표, 그리고 결국 디자인까지. 한 사람이 다 해내라는 게임.
+            </Body>
+            <BentoCard bg={C.paper} accent="subtle" padding={28} style={{ marginTop: 'auto' }}>
+              <Eyebrow color={C.fg3}>OUR THESIS</Eyebrow>
+              <Body style={{ marginTop: 12, fontSize: 24 }}>
+                4중고 중 <b>3개는 AI가 80% 떠안을 수 있다</b>. 사람은 마지막 판단에 집중.
+              </Body>
+            </BentoCard>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle">
+              <Eyebrow color={C.fg3}>PAIN 01 · TIME</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 72, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                72 hrs
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg2 }}>
+                평균 RFP 마감까지의 가용 시간. 그 사이에 본업도 함께.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime}>
+              <Eyebrow color={C.ink}>PAIN 02 · STRUCTURE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 72, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                15+ 섹션
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                목차·요약·일정·예산·리스크·팀 소개… 빠뜨리면 곧 감점.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper}>
+              <Eyebrow color={C.lime}>PAIN 03 · EVIDENCE</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 72, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em', color: C.paper }}>
+                30+ 출처
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.fg4 }}>
+                통계·사례·인용·법령. 신뢰할 수 있는 1차 자료를 추적하는 시간이 곧 비용.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft}>
+              <Eyebrow color={C.ink}>PAIN 04 · DESIGN</Eyebrow>
+              <div style={{ marginTop: 16, fontFamily: FONT.display, fontSize: 72, fontWeight: 600, lineHeight: 1, letterSpacing: '-0.04em' }}>
+                마지막 8h
+              </div>
+              <Body style={{ marginTop: 14, fontSize: 22, color: C.ink }}>
+                내용을 다 써놓고도 표지·표·인포그래픽에서 막판이 깨진다.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={71} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>

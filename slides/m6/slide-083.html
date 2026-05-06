@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide 083 — 표준 HTML 제안서 템플릿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+  <link rel="stylesheet" href="../../handoff/design-system/colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #E6E7EB; }
+    #stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E6E7EB; color: #0A0A0A; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div id="stage"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script type="text/babel" src="../../handoff/slide-tokens.jsx"></script>
+<script type="text/babel" src="../../handoff/slide-primitives.jsx"></script>
+
+<script type="text/babel">
+  const TOTAL = 120;
+
+  function Slide() {
+    return (
+      <SlideFrame bg={C.canvas}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, height: '100%', alignItems: 'stretch' }}>
+          {/* Left: title + lead */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Eyebrow>83 · HTML PROPOSAL TEMPLATE</Eyebrow>
+            <SlideTitle style={{ marginTop: 28 }}>
+              표준 <Hl italic={false}>5블록</Hl> 템플릿이면<br/>제안서가 끝납니다.
+            </SlideTitle>
+            <Body style={{ marginTop: 32, fontSize: TYPE_SCALE.lead, color: C.fg2, maxWidth: 520 }}>
+              표지·목차·섹션·인포그래픽·표 — 이 다섯 블록만 잘 만들어 두면 어떤 제안서든 채워 넣기만 하면 됩니다.
+            </Body>
+
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BentoCard bg={C.paper} accent="subtle" padding={24}>
+                <Eyebrow color={C.fg3}>TIP</Eyebrow>
+                <Body style={{ marginTop: 12, fontSize: 24 }}>
+                  블록은 <b>section + class</b> 단위로 분리. 재사용·교체가 쉬워집니다.
+                </Body>
+              </BentoCard>
+            </div>
+          </div>
+
+          {/* Right: 5-block bento (2+3) */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr', gap: 18 }}>
+            <BentoCard bg={C.paper} accent="subtle" padding={28}>
+              <Eyebrow color={C.fg3}>BLOCK 01</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                Cover
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.fg2 }}>
+                제목·발주처·제출일·대표 비주얼 1장.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lime} padding={28}>
+              <Eyebrow color={C.ink}>BLOCK 02</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                TOC
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>
+                목차 + 페이지 번호 자동 생성.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.paper} accent="subtle" padding={28}>
+              <Eyebrow color={C.fg3}>BLOCK 03</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                Section
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.fg2 }}>
+                H1·H2·본문·인용 4단 위계.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.ink} fg={C.paper} padding={28}>
+              <Eyebrow color={C.lime}>BLOCK 04</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', color: C.paper }}>
+                Infographic
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.fg4 }}>
+                SVG 다이어그램 · KPI 카드 · 흐름도.
+              </Body>
+            </BentoCard>
+
+            <BentoCard bg={C.lavSoft} padding={28} style={{ gridColumn: 'span 2' }}>
+              <Eyebrow color={C.ink}>BLOCK 05</Eyebrow>
+              <div style={{ marginTop: 12, fontFamily: FONT.display, fontSize: 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+                Table · 가격·일정·산출물
+              </div>
+              <Body style={{ marginTop: 10, fontSize: 22, color: C.ink }}>
+                CSS grid로 zebra·합계행 스타일링. 인쇄에서 절대 안 깨지는 표 한 벌.
+              </Body>
+            </BentoCard>
+          </div>
+        </div>
+        <SlideFooter index={83} total={TOTAL} label="M6 · PROPOSAL" />
+      </SlideFrame>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('stage')).render(<Slide />);
+</script>
+</body>
+</html>
