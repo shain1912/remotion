@@ -1,0 +1,11 @@
+{
+  "name": "ai-video-factory",
+  "displayName": "AI Video Factory",
+  "description": "Mass-produce retention-optimized Korean videos with MiniMax (image/video/TTS) + Remotion. Full pipeline (topic → script → storyboard → generate → assemble/render) across 4 visual templates: montage (AI-image fast-cut), slides (Claude-style keynote), theory (3Blue1Brown-style graphs), and gitgraph (git internals visualization).",
+  "version": "1.0.0",
+  "author": { "name": "shain1912", "email": "shain1912@gmail.com" },
+  "homepage": "https://github.com/shain1912/remotion",
+  "repository": "https://github.com/shain1912/remotion",
+  "license": "MIT",
+  "keywords": ["video", "youtube", "korean", "remotion", "minimax", "factory", "education", "3blue1brown"]
+}
