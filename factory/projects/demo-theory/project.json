@@ -1,0 +1,30 @@
+{
+  "id": "demo-theory",
+  "title": "시간 복잡도, Big-O를 눈으로",
+  "template": "theory",
+  "niche": "cs-lecture",
+  "lang": "ko",
+  "format": { "width": 1920, "height": 1080, "fps": 30 },
+  "voice": { "voiceId": "shainvoice01", "model": "speech-2.6-hd", "speed": 1.12, "pitch": 1, "vol": 1.1 },
+  "style": { "accent": "#58C4DD" },
+  "scenes": [
+    { "id": "s01", "section": "intro", "phase": "title", "title": "시간 복잡도", "subtitle": "Big-O를 눈으로",
+      "narration": "알고리즘의 시간 복잡도. 표로 외우면 헷갈리지만, 그래프로 보면 한 번에 이해됩니다." },
+    { "id": "s02", "section": "intro", "phase": "axes",
+      "narration": "가로축은 입력의 크기 n, 세로축은 연산 횟수입니다. 입력이 커질 때, 일이 얼마나 빨리 늘어나는지를 봅니다." },
+    { "id": "s03", "section": "curves", "phase": "curve", "curve": "const", "label": "O(1)", "sub": "상수 시간 — 입력과 무관",
+      "narration": "먼저 O(1). 입력이 아무리 커져도 연산은 그대로. 배열에서 인덱스로 한 칸 꺼내는 것처럼요." },
+    { "id": "s04", "section": "curves", "phase": "curve", "curve": "log", "label": "O(log n)", "sub": "로그 시간 — 이진 탐색",
+      "narration": "O(log n)은 매번 절반씩 줄여 나갑니다. 이진 탐색이 대표적이죠. 천 배가 커져도 열 번이면 충분합니다." },
+    { "id": "s05", "section": "curves", "phase": "curve", "curve": "linear", "label": "O(n)", "sub": "선형 시간 — 한 번 훑기",
+      "narration": "O(n)은 입력에 정비례합니다. 리스트를 처음부터 끝까지 한 번 훑는 경우죠." },
+    { "id": "s06", "section": "curves", "phase": "curve", "curve": "nlogn", "label": "O(n log n)", "sub": "좋은 정렬의 한계",
+      "narration": "O(n log n)은 잘 만든 정렬 알고리즘의 속도입니다. 비교 기반 정렬이 도달할 수 있는 현실적인 최선이죠." },
+    { "id": "s07", "section": "curves", "phase": "curve", "curve": "quad", "label": "O(n²)", "sub": "중첩 반복 — 위험 신호",
+      "narration": "그리고 O(n제곱). 이중 반복문이 대표적입니다. 처음엔 멀쩡해 보여도, 곧 무섭게 치솟습니다." },
+    { "id": "s08", "section": "wrap", "phase": "compare",
+      "narration": "여기서 핵심. n이 작을 땐 다 비슷해 보입니다. 그런데 n이 커지는 순간, 곡선들의 격차는 폭발합니다." },
+    { "id": "s09", "section": "wrap", "phase": "outro", "title": "복잡도를 안다는 것",
+      "narration": "어떤 곡선 위에서 코드를 짜고 있는지 아는 것. 그게 좋은 개발자와의 차이입니다. 다음 강의에서 직접 분석해 봅니다." }
+  ]
+}

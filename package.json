@@ -7,11 +7,14 @@
     "start": "remotion preview src/index.ts",
     "dev": "remotion preview src/index.ts",
     "saas": "vite",
+    "studio": "node factory/studio.mjs",
+    "studio:api": "node factory/server.mjs",
     "build": "remotion render src/index.ts TechReview out/video.mp4",
     "upgrade": "remotion upgrade"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@remotion/bundler": "^4.0.436",
     "@remotion/gif": "^4.0.436",
     "@remotion/google-fonts": "^4.0.436",
     "@remotion/light-leaks": "^4.0.436",
@@ -22,6 +25,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "ffmpeg-static": "^5.3.0",
     "lucide-react": "^0.577.0",
     "openai": "^6.31.0",
     "react": "^18.0.0",
@@ -32,7 +36,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
-    "@remotion/cli": "4.0.436",
+    "@remotion/cli": "^4.0.436",
     "@types/node": "^25.5.0",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",

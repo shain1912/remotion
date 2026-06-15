@@ -1,0 +1,32 @@
+{
+  "id": "demo-gitgraph",
+  "title": "깃은 어떻게 움직이나",
+  "template": "gitgraph",
+  "niche": "cs-lecture",
+  "lang": "ko",
+  "format": { "width": 1920, "height": 1080, "fps": 30 },
+  "voice": { "voiceId": "shainvoice01", "model": "speech-2.6-hd", "speed": 1.12, "pitch": 1, "vol": 1.1 },
+  "style": { "accent": "#58C4DD" },
+  "scenes": [
+    { "id": "s01", "phase": "title", "title": "깃은 어떻게 움직이나", "subtitle": "커밋 · 브랜치 · 머지를 그림으로",
+      "narration": "깃을 명령어로만 외우면 헷갈립니다. 그런데 그림으로 보면, 깃은 사실 점과 화살표가 전부입니다." },
+    { "id": "s02", "op": "commit", "branch": "main", "message": "초기 레시피", "caption": "커밋 = 스냅샷 한 점",
+      "narration": "team-recipes 저장소를 만들고 첫 커밋을 찍습니다. 커밋 하나는 그 순간의 스냅샷, 즉 점 하나입니다." },
+    { "id": "s03", "op": "commit", "branch": "main", "message": "README 추가", "caption": "커밋은 줄줄이 연결",
+      "narration": "다음 커밋은 이전 커밋을 부모로 가리킵니다. 그래서 커밋들은 화살표로 줄줄이 연결됩니다." },
+    { "id": "s04", "op": "branch", "name": "feature/bibimbap", "from": "main", "caption": "브랜치 = 움직이는 포인터",
+      "narration": "비빔밥 레시피를 추가할 브랜치를 땁니다. 브랜치는 복사가 아니라, 특정 커밋을 가리키는 가벼운 포인터일 뿐입니다." },
+    { "id": "s05", "op": "commit", "branch": "feature/bibimbap", "message": "비빔밥 추가", "caption": "feature에서 작업",
+      "narration": "feature 브랜치에서 커밋하면, 그 포인터만 앞으로 한 칸 움직입니다. main은 그대로죠." },
+    { "id": "s06", "op": "commit", "branch": "main", "message": "오타 수정", "caption": "main도 전진 → 분기",
+      "narration": "그 사이 동료는 main에서 오타를 고쳐 커밋했습니다. 이제 두 브랜치가 서로 다른 길로 갈라졌습니다." },
+    { "id": "s07", "op": "commit", "branch": "feature/bibimbap", "message": "사진 추가", "caption": "두 갈래가 벌어짐",
+      "narration": "feature에 사진까지 추가합니다. 갈라진 두 갈래, 이게 바로 협업에서 늘 생기는 모양입니다." },
+    { "id": "s08", "op": "merge", "into": "main", "from": "feature/bibimbap", "message": "merge", "caption": "머지 = 부모가 둘인 커밋",
+      "narration": "이제 합칩니다. 머지 커밋은 부모가 둘인 특별한 점이에요. 두 갈래의 역사를 하나로 묶습니다." },
+    { "id": "s09", "op": "worktree", "branches": ["main", "feature/bibimbap"], "caption": "git worktree",
+      "narration": "브랜치를 오갈 때마다 파일이 바뀌는 게 번거롭다면, 워크트리를 씁니다. 하나의 저장소에, 작업 디렉터리를 두 개 두는 거죠. 동시에 두 브랜치를 펼쳐 볼 수 있습니다." },
+    { "id": "s10", "phase": "outro", "title": "점과 화살표가 전부",
+      "narration": "커밋은 점, 브랜치는 포인터, 머지는 부모가 둘인 점. 이 그림만 머릿속에 있으면, 깃 명령어는 그림을 바꾸는 도구일 뿐입니다." }
+  ]
+}

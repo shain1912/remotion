@@ -1,0 +1,148 @@
+{
+  "id": "demo-git",
+  "title": "깃 명령어 외우던 시대는 끝났다 | 바이브 코딩 Git",
+  "niche": "ai-dev",
+  "lang": "ko",
+  "format": { "width": 1920, "height": 1080, "fps": 30 },
+  "voice": { "voiceId": "shainvoice01", "model": "speech-2.6-hd", "speed": 1.12, "pitch": 1, "vol": 1.1 },
+  "style": {
+    "imageSuffix": "dark cinematic 3D render, modern developer workspace aesthetic, teal and amber rim lighting, shallow depth of field, volumetric glow, ultra detailed, no text, 16:9 cinematic",
+    "accent": "#22d3a6",
+    "bg": "#0a0e14"
+  },
+  "thumbnail": {
+    "bgPrompt": "extreme close-up of a stressed male developer's face half-lit by glowing red terminal error code reflected on his glasses, dark cinematic, intense worried expression, dramatic teal and red rim light",
+    "lines": [{ "text": "깃 명령어" }, { "text": "외우지 마세요", "accent": true }],
+    "align": "left"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration": "깃 명령어, 아직도 외우고 계세요?",
+      "caption": "아직도 외우세요?",
+      "imagePrompt": "a stressed software developer staring at a terminal full of red git error messages, hands on head, glowing monitor in a dark room",
+      "motion": "kenburns-in",
+      "video": { "prompt": "[Push in] the developer slowly leans back in frustration, screen glow flickering", "model": "MiniMax-Hailuo-2.3-Fast", "duration": 6, "resolution": "768P" }
+    },
+    {
+      "id": "s02",
+      "narration": "git reset, rebase, cherry-pick. 검색만 수십 번 해보셨을 겁니다.",
+      "caption": "검색 수십 번",
+      "imagePrompt": "close-up of a screen with dozens of stackoverflow browser tabs open about git commands, reflection on developer glasses",
+      "motion": "pan-left"
+    },
+    {
+      "id": "s03",
+      "narration": "그런데 요즘 잘나가는 개발자들은, 명령어를 외우지 않습니다.",
+      "caption": "외우지 않는다",
+      "imagePrompt": "a confident relaxed developer leaning back with arms crossed, calm smile, sleek minimal desk, soft cinematic light",
+      "motion": "kenburns-out"
+    },
+    {
+      "id": "s04",
+      "narration": "비결은 바이브 코딩입니다.",
+      "caption": "바이브 코딩",
+      "imagePrompt": "a glowing neon hologram of an AI brain merging with flowing code streams above a keyboard, futuristic, cyber aesthetic",
+      "motion": "kenburns-in",
+      "video": { "prompt": "[Push in] the neon AI hologram pulses and code streams flow upward", "model": "MiniMax-Hailuo-2.3-Fast", "duration": 6, "resolution": "768P" }
+    },
+    {
+      "id": "s05",
+      "narration": "원하는 걸 말로 설명하면, AI가 깃 명령어를 대신 실행해 줍니다.",
+      "caption": "말로 설명하면 끝",
+      "imagePrompt": "a chat interface inside a code editor where a human types a request and an AI agent responds, glowing chat bubbles, modern IDE",
+      "motion": "pan-right"
+    },
+    {
+      "id": "s06",
+      "narration": "예를 들어, 방금 커밋 되돌려줘, 라고 말하면.",
+      "caption": "\"되돌려줘\"",
+      "imagePrompt": "a speech bubble with a microphone icon floating over a dark terminal, sound waves, cinematic glow",
+      "motion": "kenburns-in"
+    },
+    {
+      "id": "s07",
+      "narration": "AI가 git revert를 알아서 실행하죠.",
+      "caption": "git revert 자동",
+      "imagePrompt": "a terminal showing a successful git revert command with a bright green checkmark, particles of light, satisfying",
+      "motion": "kenburns-out"
+    },
+    {
+      "id": "s08",
+      "narration": "머지 충돌이 나도 이제 걱정할 필요가 없습니다.",
+      "caption": "충돌? 걱정 끝",
+      "imagePrompt": "two glowing code branches violently colliding with conflict markers and sparks in a dark space, dramatic",
+      "motion": "pan-left"
+    },
+    {
+      "id": "s09",
+      "narration": "이 충돌 해결해줘, 한마디면 끝납니다.",
+      "caption": "한마디면 끝",
+      "imagePrompt": "an AI hand of light gently untangling two merging code streams into one clean flow, elegant, harmonious",
+      "motion": "kenburns-in"
+    },
+    {
+      "id": "s10",
+      "narration": "브랜치 전략도 AI에게 물어보세요.",
+      "caption": "브랜치 전략도",
+      "imagePrompt": "a glowing 3D git branch graph floating in dark space, nodes and connecting lines of teal light, network visualization",
+      "motion": "kenburns-out"
+    },
+    {
+      "id": "s11",
+      "narration": "기능별로 브랜치 나눠줘, 라고 하면 깔끔하게 정리됩니다.",
+      "caption": "깔끔하게 정리",
+      "imagePrompt": "a perfectly organized clean git branch tree diagram glowing on a screen, symmetrical, minimal, satisfying order",
+      "motion": "pan-right"
+    },
+    {
+      "id": "s12",
+      "narration": "핵심은, 명령어가 아니라 의도를 말하는 겁니다.",
+      "caption": "명령어 → 의도",
+      "imagePrompt": "a human silhouette speaking, thought turning into glowing machine code, concept of intention becoming execution, cinematic",
+      "motion": "kenburns-in"
+    },
+    {
+      "id": "s13",
+      "narration": "깃을 외우는 데 쓰던 그 시간을,",
+      "caption": "외우던 시간을",
+      "imagePrompt": "an hourglass made of glowing code particles draining, time concept, dark moody background, cinematic",
+      "motion": "kenburns-out"
+    },
+    {
+      "id": "s14",
+      "narration": "이제 진짜 중요한 코드에 쓸 수 있습니다.",
+      "caption": "진짜 코드에",
+      "imagePrompt": "a developer triumphantly shipping a product, a rocket of light launching from a laptop screen, energetic, inspiring",
+      "motion": "kenburns-in"
+    },
+    {
+      "id": "s15",
+      "narration": "물론, 기본 원리는 알고 있어야 합니다.",
+      "caption": "기본은 알아야",
+      "imagePrompt": "a clean blueprint diagram of git internals with commits and pointers, soft warning amber tone, educational, schematic",
+      "motion": "pan-left"
+    },
+    {
+      "id": "s16",
+      "narration": "커밋, 브랜치, 머지. 이 세 가지 개념만 잡으면,",
+      "caption": "커밋·브랜치·머지",
+      "imagePrompt": "three glowing minimal icons representing commit, branch and merge floating in a row in dark space, clean, iconic",
+      "motion": "kenburns-out"
+    },
+    {
+      "id": "s17",
+      "narration": "나머지 디테일은 AI가 다 채워줍니다.",
+      "caption": "나머진 AI가",
+      "imagePrompt": "an AI filling in missing glowing puzzle pieces of a larger code structure, completion, harmony, teal glow",
+      "motion": "kenburns-in"
+    },
+    {
+      "id": "s18",
+      "narration": "다음 편에서 실전 셋업까지 이어집니다. 지금 바로 따라 해보세요.",
+      "caption": "지금 따라하기",
+      "imagePrompt": "a glowing forward arrow and a rising path of light leading into the distance, next chapter concept, premium dark cinematic studio background, particles, no text",
+      "motion": "kenburns-out"
+    }
+  ]
+}
