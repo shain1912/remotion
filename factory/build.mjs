@@ -7,7 +7,14 @@
 //   node factory/build.mjs demo-git --no-video      # skip expensive Hailuo clips
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { generateImage, generateVideo, tts } from './lib/minimax.mjs';
+
+// Cache key for a scene's TTS: changes whenever the narration OR any voice param changes,
+// so editing a line invalidates only that scene's stale mp3 (no more manual audio deletion).
+const voiceSig = (text, v) => crypto.createHash('sha1')
+  .update(JSON.stringify([text, v.voiceId, v.model, v.speed ?? null, v.pitch ?? null, v.vol ?? null, v.emotion ?? null]))
+  .digest('hex').slice(0, 16);
 
 const projectId = process.argv[2];
 if (!projectId) { console.error('usage: node factory/build.mjs <projectId> [--limit N] [--no-video]'); process.exit(1); }
@@ -36,20 +43,34 @@ async function mapLimit(items, limit, fn) {
 
 // ---- 1) VOICE (sequential, KEY1 / shainvoice01) ----
 console.log(`\n[voice] ${scenes.length} scenes -> ${project.voice.voiceId}`);
+const v = project.voice;
 for (const sc of scenes) {
   const mp3 = path.join(pub, 'audio', `${sc.id}.mp3`);
   const meta = path.join(pub, 'audio', `${sc.id}.json`);
+  const sig = voiceSig(sc.narration, v);
   if (fs.existsSync(mp3) && fs.existsSync(meta)) {
-    Object.assign(sc, JSON.parse(fs.readFileSync(meta, 'utf8')));
-    console.log(`  ${sc.id} cached (${sc.durationMs}ms)`);
-    continue;
+    const cached = JSON.parse(fs.readFileSync(meta, 'utf8'));
+    if (cached.sig === undefined) {
+      // legacy cache (no sig): assume it matches current text, backfill the sig so
+      // any FUTURE narration edit is detected. No regeneration -> no surprise TTS cost.
+      cached.sig = sig;
+      fs.writeFileSync(meta, JSON.stringify(cached));
+      Object.assign(sc, cached);
+      console.log(`  ${sc.id} cached (${sc.durationMs}ms, sig backfilled)`);
+      continue;
+    }
+    if (cached.sig === sig) {
+      Object.assign(sc, cached);
+      console.log(`  ${sc.id} cached (${sc.durationMs}ms)`);
+      continue;
+    }
+    console.log(`  ${sc.id} narration/voice changed -> regenerating`);
   }
-  const v = project.voice;
   const r = await tts({ text: sc.narration, voiceId: v.voiceId, model: v.model, speed: v.speed, pitch: v.pitch, vol: v.vol, emotion: v.emotion });
   fs.writeFileSync(mp3, r.audio);
   sc.durationMs = r.ms ?? Math.round((r.subtitles.at(-1)?.time_end) || 3000);
   sc.subtitles = r.subtitles;
-  fs.writeFileSync(meta, JSON.stringify({ durationMs: sc.durationMs, subtitles: sc.subtitles }));
+  fs.writeFileSync(meta, JSON.stringify({ durationMs: sc.durationMs, subtitles: sc.subtitles, sig }));
   console.log(`  ${sc.id} ✓ ${sc.durationMs}ms "${sc.narration.slice(0, 24)}..."`);
 }
 

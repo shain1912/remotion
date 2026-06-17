@@ -149,14 +149,12 @@ node factory/still.mjs <id> <frame>  # QA one frame → factory/_verify/still_<i
 node factory/render.mjs <id>         # → out/<id>.mp4
 ```
 
-### ⚠️ Cache footgun (important for re-edits)
-`build.mjs` caches audio by **scene id only**, NOT by narration text. If you edit a scene's
-`narration` after a first build, its mp3 is **stale** (old voice). Before rebuilding, delete the
-changed scenes' audio:
-```bash
-rm -f public/factory/<id>/audio/<sceneId>.mp3 public/factory/<id>/audio/<sceneId>.json
-```
-Then `build.mjs` regenerates only those. Always QA a still on edited scenes to confirm.
+### Re-editing narration
+`build.mjs` caches audio by a **content signature** (narration + voice params), stored as `sig`
+in each `audio/<sceneId>.json`. Edit a scene's `narration` and rebuild — only that scene
+regenerates (`narration/voice changed -> regenerating`); the rest stay cached. No manual deletion
+needed. (Legacy caches without a `sig` are backfilled once, assuming they match the current text.)
+Still QA a frame on edited scenes to confirm.
 
 ---
 
