@@ -1,6 +1,6 @@
 # 🏭 AI Video Factory — Claude Code Plugin
 
-10 skills that turn one topic into a finished, retention-optimized **Korean** video, using
+11 skills that turn one topic into a finished, retention-optimized **Korean** video, using
 **MiniMax** (image · video · TTS) + **Remotion** (assemble · render). Distilled know-how:
 "align with text first, the machine generates" + "many images → fast cuts → watch-time".
 
@@ -18,6 +18,7 @@
 | `theory-viz` | 3Blue1Brown-style theory/graph animations (`theory`) |
 | `thumbnail-designer` | high-CTR thumbnails |
 | `ad-creative` | card-news + short product ads (bonus) |
+| `lecture-clip-factory` | beginner Korean coding-lecture clips — term-concept breakdowns + concrete homework, build-log grounded |
 
 ## Install
 

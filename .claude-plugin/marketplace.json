@@ -5,20 +5,20 @@
     "email": "shain1912@gmail.com"
   },
   "description": "AI video production skills for Claude Code — mass-produce Korean videos with MiniMax + Remotion.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "plugins": [
     {
       "name": "ai-video-factory",
       "displayName": "AI Video Factory",
       "source": "./plugins/ai-video-factory",
-      "description": "10 skills to mass-produce retention-optimized Korean videos across 4 visual templates (montage / slides / 3Blue1Brown theory / git-graph internals) with MiniMax (image·video·TTS) + Remotion.",
-      "version": "1.0.0",
+      "description": "11 skills to mass-produce retention-optimized Korean videos across 4 visual templates (montage / slides / 3Blue1Brown theory / git-graph internals) with MiniMax (image·video·TTS) + Remotion — including a full beginner coding-lecture clip factory.",
+      "version": "1.1.0",
       "author": { "name": "shain1912", "email": "shain1912@gmail.com" },
       "homepage": "https://github.com/shain1912/remotion",
       "repository": "https://github.com/shain1912/remotion",
       "license": "MIT",
       "category": "video-production",
-      "keywords": ["video", "youtube", "korean", "remotion", "minimax", "factory", "education"]
+      "keywords": ["video", "youtube", "korean", "remotion", "minimax", "factory", "education", "lecture", "course"]
     }
   ]
 }
