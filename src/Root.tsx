@@ -6,10 +6,21 @@ import { FactoryThumbnail } from './factory/FactoryThumbnail';
 import { SlideVideo, calculateSlideMetadata } from './factory/SlideVideo';
 import { TheoryVideo, calculateTheoryMetadata } from './factory/TheoryVideo';
 import { GitGraphVideo, calculateGitGraphMetadata } from './factory/GitGraphVideo';
+import { TerminalVideo, calculateTerminalMetadata } from './factory/TerminalVideo';
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="TerminalVideo"
+        component={TerminalVideo}
+        durationInFrames={300}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ projectId: 'demo-terminal' }}
+        calculateMetadata={calculateTerminalMetadata}
+      />
       <Composition
         id="GitGraphVideo"
         component={GitGraphVideo}

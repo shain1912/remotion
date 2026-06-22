@@ -23,7 +23,7 @@ const outArg = rest.find((a) => a.endsWith('.mp4'));
 const outFile = path.resolve(outArg || `out/${projectId}.mp4`);
 fs.mkdirSync(path.dirname(outFile), { recursive: true });
 
-const COMP_BY_TEMPLATE = { montage: 'FactoryVideo', slides: 'SlideVideo', theory: 'TheoryVideo', gitgraph: 'GitGraphVideo' };
+const COMP_BY_TEMPLATE = { montage: 'FactoryVideo', slides: 'SlideVideo', theory: 'TheoryVideo', gitgraph: 'GitGraphVideo', terminal: 'TerminalVideo' };
 const project = JSON.parse(fs.readFileSync(path.resolve(`factory/projects/${projectId}/project.json`), 'utf8'));
 const template = project.template || 'montage';
 const compId = COMP_BY_TEMPLATE[template];
@@ -51,8 +51,13 @@ console.log(`[render] ${composition.width}x${composition.height} ${composition.d
 
 async function renderRange(out, frameRange) {
   let last = -1;
+  // concurrency = parallel Chromium tabs rendering frames. Default 8 of 16 cores (env-overridable).
+  // gl:'angle' routes browser GL through the GPU (RTX 3080 via D3D11) instead of software swiftshader.
+  const concurrency = Number(process.env.RENDER_CONCURRENCY) || 8;
   await renderMedia({
-    composition, serveUrl, codec: 'h264', outputLocation: out, inputProps, frameRange, concurrency: 2,
+    composition, serveUrl, codec: 'h264', outputLocation: out, inputProps, frameRange, concurrency,
+    chromiumOptions: { gl: 'angle' },          // browser/WebGL rendering on the GPU (RTX 3080 via D3D11)
+    hardwareAcceleration: 'if-possible',        // H.264 ENCODE on the GPU (NVENC) when available, else CPU fallback
     onProgress: ({ progress }) => { const p = Math.round(progress * 100); if (p !== last && p % 10 === 0) { process.stdout.write(`\r   ${path.basename(out)} ${p}%   `); last = p; } },
   });
   process.stdout.write('\n');

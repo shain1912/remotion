@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: runway-platform
+  cluster:
+    server: https://kubernetes.gpu.aiswlab.co.kr
+    insecure-skip-tls-verify: true
+contexts:
+- name: runway-platform
+  context:
+    cluster: runway-platform
+    user: keycloak-user
+current-context: runway-platform
+users:
+- name: keycloak-user
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      command: kubectl
+      args:
+        - oidc-login
+        - get-token
+        - --oidc-issuer-url=https://keycloak.gpu.aiswlab.co.kr/realms/runway
+        - --oidc-client-id=kubernetes
+        - --insecure-skip-tls-verify
+      interactiveMode: IfAvailable
+      provideClusterInfo: true

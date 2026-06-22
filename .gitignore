@@ -47,3 +47,15 @@ venv/
 .venv/
 __pycache__/
 *.py[cod]
+
+# vision-lab model weights (large, do not commit)
+factory/vision-lab/models/
+factory/vision-lab/out/
+yolo*.pt
+yoloe*.pt
+mobileclip*.ts
+runs/
+
+# heavy deliverables / big reference video (not needed on the pod)
+강의완성본/
+ref/*.mkv

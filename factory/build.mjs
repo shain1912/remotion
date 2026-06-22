@@ -112,7 +112,7 @@ for (const sc of clipScenes) {
 // ---- 4) MANIFEST ----
 // Carry through every scene content field + computed timing + audio. Montage
 // adds image/clip; other templates render their content fields directly.
-const STRIP = new Set(['imagePrompt', 'video', 'subtitles', 'hasClip', 'durationMs']);
+const STRIP = new Set(['imagePrompt', 'video', 'hasClip', 'durationMs']); // keep subtitles -> sequential captions
 const manifest = {
   id: project.id, title: project.title, template, format: project.format, style: project.style,
   scenes: scenes.map((sc) => {

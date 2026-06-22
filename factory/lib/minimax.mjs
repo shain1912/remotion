@@ -21,14 +21,17 @@ function loadEnv() {
 }
 loadEnv();
 
-const TTS_KEY = process.env.MINIMAX_API_KEY1;
+// Which key holds the cloned voice for TTS. Default KEY1; set MINIMAX_TTS_KEY=2
+// (etc.) to route TTS to another account where the voice has been re-cloned.
+const TTS_KEY_NUM = process.env.MINIMAX_TTS_KEY || '1';
+const TTS_KEY = process.env[`MINIMAX_API_KEY${TTS_KEY_NUM}`];
 const GEN_KEYS = [
   process.env.MINIMAX_API_KEY2,
   process.env.MINIMAX_API_KEY3,
   process.env.MINIMAX_API_KEY4,
 ].filter(Boolean);
 
-if (!TTS_KEY) console.warn('[minimax] WARN: MINIMAX_API_KEY1 (TTS/voice) not set');
+if (!TTS_KEY) console.warn(`[minimax] WARN: MINIMAX_API_KEY${TTS_KEY_NUM} (TTS/voice) not set`);
 if (!GEN_KEYS.length) console.warn('[minimax] WARN: no generation keys (KEY2/3/4) set');
 
 let genIdx = 0;

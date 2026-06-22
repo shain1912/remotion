@@ -10,7 +10,7 @@ const frames = (process.argv[3] || '150').split(',').map((s) => parseInt(s.trim(
 const prefix = process.argv[4] || `factory/_verify/still_${projectId}`;
 const inputProps = { projectId };
 
-const COMP_BY_TEMPLATE = { montage: 'FactoryVideo', slides: 'SlideVideo', theory: 'TheoryVideo', gitgraph: 'GitGraphVideo' };
+const COMP_BY_TEMPLATE = { montage: 'FactoryVideo', slides: 'SlideVideo', theory: 'TheoryVideo', gitgraph: 'GitGraphVideo', terminal: 'TerminalVideo' };
 const project = JSON.parse(fs.readFileSync(path.resolve(`factory/projects/${projectId}/project.json`), 'utf8'));
 const compId = COMP_BY_TEMPLATE[project.template || 'montage'];
 

@@ -1,0 +1,23 @@
+{
+  "id": "demo-terminal",
+  "title": "터미널 템플릿 데모",
+  "template": "terminal",
+  "niche": "vibe-coding-basics",
+  "lang": "ko",
+  "format": { "width": 1920, "height": 1080, "fps": 30 },
+  "voice": { "voiceId": "shainvoice02", "model": "speech-2.6-hd", "speed": 1.05, "pitch": 1, "vol": 1.05 },
+  "style": { "accent": "#5BD68A" },
+  "scenes": [
+    { "id": "s01", "phase": "title", "title": "터미널, 무서워 말아요", "subtitle": "명령 한 줄씩, 같이 쳐봅니다", "narration": "데모." },
+    { "id": "s02", "kicker": "직접 하기 ①", "title": "bash — first save", "prompt": "❯",
+      "commands": ["git init", "git add .", "git commit -m \"first save\""],
+      "output": ["Initialized empty Git repository in ./.git/", "[main (root-commit) a1b2c3] first save", " 1 file changed, 1 insertion(+)"],
+      "okLines": [1], "note": "프롬프트 한 줄이면 저장소가 생기고 첫 세이브가 찍혀요.",
+      "narration": "데모." },
+    { "id": "s03", "kicker": "결과 읽기", "title": "bash — git log", "prompt": "❯",
+      "commands": ["git log --oneline"],
+      "output": ["a1b2c3 first save"],
+      "okLines": [0], "note": "'first save' 한 줄이 보이면 성공이에요.",
+      "narration": "데모." }
+  ]
+}
