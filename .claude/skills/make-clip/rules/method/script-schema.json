@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "video-script",
+  "description": "Structured script consumed by the video-production pipeline. One object per scene/segment.",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string" },
+    "format": { "type": "string", "enum": ["short-9x16", "long-16x9"] },
+    "fps": { "type": "integer", "default": 30 },
+    "global_visual_style": {
+      "type": "string",
+      "description": "ONE style string reused by every segment for cohesion, e.g. 'clean dark UI, cyan accent, bold sans headlines, subtle motion'"
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "narration_text": { "type": "string", "description": "Spoken VO for this segment. Keep the total spoken time under 60s." },
+          "duration_seconds": { "type": "number" },
+          "visual_description": { "type": "string", "description": "What is on screen: text, b-roll, charts, avatar." },
+          "visual_style": { "type": "string", "description": "Usually copy global_visual_style verbatim." }
+        },
+        "required": ["id", "narration_text", "duration_seconds", "visual_description", "visual_style"]
+      }
+    }
+  },
+  "required": ["title", "format", "global_visual_style", "segments"]
+}

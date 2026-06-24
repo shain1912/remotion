@@ -23,7 +23,17 @@ coverage/
 # ── Factory: generated assets & scratch (regenerable) ─────
 # project.json sources are tracked; generated voice/images/clips/manifest are not.
 public/factory/
+# Scratch & logs under factory/_* are ignored, but the reusable pipeline
+# scripts (place-audio / audio-check / chunk-voice / metrics / lambda / phase) are kept.
 factory/_*
+!factory/_place-audio.mjs
+!factory/_audio-check.mjs
+!factory/_chunk_voice.mjs
+!factory/_metrics.mjs
+!factory/_lambda-render-one.sh
+!factory/_phase-a.sh
+!factory/_phase-b.sh
+!factory/_prep-lambda.sh
 
 # ── Research artifacts ────────────────────────────────────
 .transcripts/
@@ -37,7 +47,11 @@ yarn-error.log*
 .DS_Store
 .vscode/
 .idea/
-.claude/
+# Claude Code workspace is ignored EXCEPT the reusable make-clip skill.
+.claude/*
+!.claude/skills
+.claude/skills/*
+!.claude/skills/make-clip
 .agents/
 *.swp
 *.swo
@@ -58,4 +72,20 @@ runs/
 
 # heavy deliverables / big reference video (not needed on the pod)
 강의완성본/
-ref/*.mkv
+# Voice clone reference samples are personal — never commit.
+ref/
+
+# ── Project-specific content (reusable engine + skill only — do NOT commit) ─
+# The 바이브코딩 lecture course is a paid deliverable: clips, plans, research,
+# handoff notes stay local. demo-*/abtest projects are kept as engine examples.
+factory/projects/byb*/
+factory/projects/_course-plan*.json
+factory/projects/_course-spec.md
+factory/projects/_byb2-authoring-spec.md
+factory/projects/_byb-remaster-spec.md
+factory/projects/_REMEDIATION.md
+factory/vision-lab/
+/CUR.md
+/HANDOFF.md
+/project_handover.md
+/ref.md
