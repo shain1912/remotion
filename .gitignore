@@ -13,6 +13,7 @@ node_modules/
 # ── Build / render outputs ────────────────────────────────
 out/
 output/
+.rtmp/
 dist/
 build/
 coverage/
@@ -28,6 +29,7 @@ public/factory/
 factory/_*
 !factory/_place-audio.mjs
 !factory/_audio-check.mjs
+!factory/_audio-qc.mjs
 !factory/_chunk_voice.mjs
 !factory/_metrics.mjs
 !factory/_lambda-render-one.sh

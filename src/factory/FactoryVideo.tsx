@@ -189,7 +189,8 @@ const Scene: React.FC<{ scene: FactoryScene; accent: string; index: number; tota
       <AbsoluteFill style={{ backgroundColor: '#000', opacity: fade }}>
         <AbsoluteFill style={{ overflow: 'hidden' }}>
           {scene.clip ? <Video src={staticFile(scene.clip)} muted loop style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            : <Img src={staticFile(scene.image!)} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: motionTransform(scene.motion || 'kenburns-in', frame, durationInFrames) }} />}
+            : scene.image ? <Img src={staticFile(scene.image)} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: motionTransform(scene.motion || 'kenburns-in', frame, durationInFrames) }} />
+            : <AbsoluteFill style={{ background: `radial-gradient(circle at ${50 + 18 * Math.sin(frame / 60)}% ${42 + 14 * Math.cos(frame / 70)}%, ${accent}55 0%, #0d0d12 58%, #000 100%)` }} />}
         </AbsoluteFill>
         <AbsoluteFill style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 66%, rgba(0,0,0,0.4) 100%)' }} />
         {scene.caption && (

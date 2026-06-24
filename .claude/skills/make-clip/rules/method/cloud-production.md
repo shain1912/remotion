@@ -57,3 +57,6 @@ RunPod 음성 ~$4 + Lambda 렌더 ~$42 + R2 소액 ≈ **~$46**. (1080p면 Lambd
 - **place-audio 간헐 ffmpeg 실패:** 배치 중 일부 wav가 일시적으로 실패(동시 ffmpeg 경합). 개별 재실행하면 성공 → 실패분만 1회 재시도.
 - **loudnorm 표준:** 모든 음성 `loudnorm=I=-16:TP=-1.5:LRA=11`. 사이드카에 `normalized:true`. 납품 후 볼륨 보정은 `H:\moodle\_volume_fix.mjs`(오디오만 2-pass, 영상 copy, R2 덮어쓰기, 재렌더 0, 임계 -18.5 LUFS).
 - **LMS 음성 교체:** 이미 올라간 편의 음성만 교체 시 `H:\moodle\_reupload.mjs <섹션> <폴더>`(제목 매칭, 같은 R2 키 덮어쓰기, DB는 duration만 갱신).
+- **긴 씬 garble (RunPod·voicebox 공통):** Qwen TTS는 긴 단일 입력(>700자)에서 같은 소리를 반복해 음성이 정확히 ~655초로 폭주(뭉개짐). 납품 후에야 들통남(검증 게이트가 "잘림"만 보고 "과다길이"는 안 봐서). **조치:** `_audio-check.mjs`(과다길이 플래그)+`_audio-qc.mjs`(신호 QC)로 렌더 전 검출 → 해당 씬 `_chunk_voice.mjs`로 문장 청크 재생성. 700자+ 씬은 처음부터 청크 권장.
+- **FactoryVideo full 레이아웃 폴백:** cover/chapter처럼 full 레이아웃인데 image·clip 둘 다 없으면 과거 `staticFile(undefined)` 크래시(로컬 렌더에서만 드러남, Lambda는 S3 에셋 있어 통과). 현재는 **애니메이션 그라데이션 배경으로 폴백**(이미지 불필요, "애니배경만" 원칙과 일치). public/factory의 img/clip은 regenerable scratch라 정리되면 재렌더 시 폴백으로 렌더됨.
+- **클리핑 오탐 주의:** `_audio-qc`의 클리핑은 `Max level≥0.997`. **Flat factor=0이면 하드클리핑 아닌 64kbps mp3 inter-sample 오버슈트라 안 들림** → 무시 가능. loudnorm은 이미 TP -1.5로 잡음.
